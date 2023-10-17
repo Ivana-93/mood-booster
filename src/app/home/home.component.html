@@ -1,0 +1,48 @@
+<div class="header">
+  <div class="left">
+    <p-button
+      label="Home"
+      icon="pi pi-home"
+      styleClass="p-button-text"
+    ></p-button>
+    <p-button
+      label="Quiz"
+      icon="pi pi-question-circle"
+      styleClass="p-button-text"
+    ></p-button>
+    <p-button
+      label="Mood History"
+      icon="pi pi-calendar"
+      styleClass="p-button-text"
+    ></p-button>
+    <p-button
+      label="Your Dairy"
+      icon="pi pi-book"
+      styleClass="p-button-text"
+    ></p-button>
+  </div>
+  <div class="right">
+    <p-button
+      label="Account"
+      icon="pi pi-sign-in"
+      styleClass="p-button-text"
+      (click)="op.toggle($event)"
+    ></p-button>
+  </div>
+</div>
+
+<p-overlayPanel #op>
+  <div class="vertical-layout">
+    <p-button
+    [routerLink]="['/login']"
+      label="Login"
+      icon="pi pi-sign-in"
+      styleClass="p-button-text"
+    ></p-button>
+    <p-button
+      label="Sign Up"
+      icon="pi pi-user-plus"
+      styleClass="p-button-text"
+    ></p-button>
+  </div>
+</p-overlayPanel>
