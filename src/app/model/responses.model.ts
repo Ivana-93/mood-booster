@@ -1,6 +1,7 @@
 export class BaseResponse {
   public isSuccess: boolean;
   public message: string;
+  public status: number;
 }
 
 export class SingleResponse<T> extends BaseResponse {

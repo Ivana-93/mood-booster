@@ -1,0 +1,64 @@
+.containter {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    flex-wrap: nowrap;
+    align-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    flex-wrap: nowrap;
+    align-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 6rem;
+    
+}
+
+.error-message {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    flex-wrap: nowrap;
+    align-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 6rem;
+
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px;
+    gap: 20px;
+}
+
+.confirm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    flex-wrap: nowrap;
+    align-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+.error-message {
+    color: red;
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+}

@@ -1,43 +1,83 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../auth.service';
-import { BaseResponse, ErrorResponse, SingleResponse } from '../model/responses.model';
+import { ApiService } from '../api.service';
+import {
+  BaseResponse,
+  ErrorResponse,
+  SingleResponse,
+} from '../model/responses.model';
 import { User } from '../model/user.model';
 import { LoginResponse } from '../model/login-response.model';
+import { Message } from 'primeng/api';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { LoginCredentials } from '../model/login-credentials.model';
+import { StorageService } from '../storage.service';
 
 @Component({
   selector: 'login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
-export class LoginComponent {
-
-  invalidLogin: boolean = false;
-
-  constructor(
-    private router: Router,
-    private authService: AuthService
-  ) { }
-
-
-  login(credentials: any) {
-    this.authService.login(credentials)
-      .subscribe(
-        (responseData: SingleResponse<LoginResponse>) => this.handleSuccess(responseData),
-        (error: Error) => this.handleError(error)
-        );
+export class LoginComponent implements OnInit {
+  get email() {
+    return this.loginForm.get('email');
+  }
+  get password() {
+    return this.loginForm.get('password');
   }
 
+  constructor(private router: Router, private authService: ApiService, private storageService: StorageService) {}
+
+  loginForm: FormGroup;
+  isLoading: boolean = false;
+  overlayVisible: boolean = false;
+  
+  ngOnInit(): void {
+    this.loginForm = new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', Validators.required),
+    });
+  }
+
+  onLogin() {
+    let loginCredentials = new LoginCredentials(
+      this.email.value,
+      this.password.value
+    );
+    this.login(loginCredentials);
+  }
+
+  private login(credentials: LoginCredentials): void {
+    this.isLoading = true;
+    this.authService.login(credentials).subscribe(
+      //success
+      (responseData: SingleResponse<LoginResponse>) =>
+        this.handleSuccess(responseData),
+      //error
+      (error: Error) => this.handleError(error)
+    );
+  }
+
+  private finishLoginRequest() {
+    this.isLoading = false;
+  }
 
   handleSuccess(responseData: SingleResponse<LoginResponse>): void {
-    localStorage.setItem("token", responseData.data.token);
-    localStorage.setItem("user", JSON.stringify(responseData.data.user));
-    this.router.navigate(["/"]);
+    this.storageService.setToken(responseData.data.token);
+    this.storageService.setUser(responseData.data.user);
+    this.router.navigate(['/']);
   }
 
   handleError(error: Error): void {
-    console.log("Fail", error.message);
-
-    this.invalidLogin = true;
+    console.log('Fail', error.message);
+    this.finishLoginRequest();
   }
+
+  public validateEmail(): void {
+    this.overlayVisible = !this.email.valid && this.email.touched;
+  }
+
+
 }
+
+

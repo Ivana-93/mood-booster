@@ -1,16 +1,14 @@
-.vertical-layout{
+.row {
+ display: flex;
+ flex-direction: row;
+ flex-wrap: wrap;
+ width: 100%;
+}
+
+.test {
     display: flex;
     flex-direction: column;
-    flex-wrap: nowrap;
-    align-content: center;
-    justify-content: center;
-    align-items: flex-start;
+    flex-wrap: wrap;
+    margin: 20px;
+    width: 40%;
 }
-
-.header{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-

@@ -1,35 +1,75 @@
-<div class="login">
-  <form class="form-login" #f="ngForm" (ngSubmit)="login(f.value)">
-    <div *ngIf="invalidLogin" class="alert alert-danger">
-      Invalid email and/or password
+<div class="login row">
+  <div class="container col-md-6 col-sm-12">
+    <form [formGroup]="loginForm" class="form-login" (ngSubmit)="onLogin()">
+      <div class="form-group">
+        <label class="w-6rem" for="email">Email</label>
+        <input
+          (blur)="validateEmail()"
+          type="text"
+          pInputText
+          formControlName="email"
+          class="p-inputtext-sm"
+          id="email"
+          name="email"
+          placeholder="Enter your email"
+        />
+      </div>
+      <div *ngIf="email.invalid && email.touched" class="error-message">
+        Hi! Please enter a valid email.
+      </div>
+      <div class="form-group">
+        <label class="w-6rem" for="password">Password</label>
+        <input
+          type="password"
+          pInputText
+          formControlName="password"
+          class="p-inputtext-sm"
+          id="password"
+          name="password"
+          placeholder="Enter password"
+        />
+        <div *ngIf="password.invalid && password.touched" class="error-message">
+          Password is not correct.
+        </div>
+      </div>
+      <p-button
+        class="login-button"
+        type="submit"
+        label="Login"
+        icon="pi pi-user"
+        [rounded]="true"
+        [disabled]="!loginForm.valid"
+        [loading]="isLoading"
+      ></p-button>
+    </form>
+  </div>
+  <div class="container col-md-1 col-sm-12">
+    <div class="divider">
+      <p-divider
+        layout="vertical"
+        class="d-sm-none d-xs-none d-md-block d-lg-block"
+      >
+        <b>OR</b></p-divider
+      >
+      <p-divider
+        class="d-sm-block d-xs-block d-md-none d-lg-none"
+        layout="horizontal"
+        [align]="'center'"
+      >
+        <b>OR</b></p-divider
+      >
     </div>
-    <div class="form-group">
-      <label class="w-6rem" for="email">Email</label>
-      <input
-        type="text"
-        class="form-control"
-        id="email"
-        name="email"
-        placeholder="Enter your email"
-        ngModel
-      />
-    </div>
-    <div class="form-group">
-      <label class="w-6rem" for="password">Password</label>
-      <input
-        type="password"
-        class="form-control"
-        id="password"
-        name="password"
-        placeholder="Enter password"
-        ngModel
-      />
-    </div>
-    <button pButton
-    type="button"
-      label="Login"
+  </div>
+  <div
+    class="col-md-5 col-sm-12 d-flex align-content-center align-items-center"
+  >
+    <p-button
+      class="register-button"
+      type="submit"
+      label="Register"
       icon="pi pi-user"
-      class="p-button-raised p-button-rounded"
-    ></button>
-  </form>
+      [rounded]="true"
+      
+    ></p-button>
+  </div>
 </div>

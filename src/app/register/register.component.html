@@ -1,0 +1,105 @@
+<div class="container col-md-6 col-sm-3 col-lg-4">
+  <p-card class="card" header="Register"
+    >
+    <form
+      [formGroup]="registerForm"
+      class="register"
+      (ngSubmit)="onRegister()"
+    >
+      <div class="form-group">
+        <label class="w-6rem" for="email">Email</label>
+        <input
+          type="text"
+          pInputText
+          formControlName="email"
+          class="p-inputtext-sm"
+          id="email"
+          name="email"
+          placeholder="Enter your email."
+        />
+      </div>
+      <div *ngIf="email.invalid && email.touched" class="error-message">
+        Hi! Please enter a valid email.
+      </div>
+      <div class="form-group">
+        <label class="w-6rem" for="password">Password</label>
+        <input
+          type="password"
+          pInputText
+          formControlName="password"
+          class="p-inputtext-sm"
+          id="password"
+          name="password"
+          placeholder="Enter password"
+        />
+      </div>
+      <div *ngIf="password.invalid && password.touched" class="error-message">
+        Paasword needs to be at least 8 characters long.
+      </div>
+      <div class="form-group">
+        <label class="w-6rem" for="confirmPassword">Confirm Password</label>
+        <input
+          type="password"
+          pInputText
+          formControlName="confirmPassword"
+          class="p-inputtext-sm"
+          id="confirmPassword"
+          name="confirmPassword"
+          placeholder="Confirm Password"
+        />
+      </div>
+      <div *ngIf="passwordsDoNotMatch" class="error-message">
+        Passwords do not match.
+      </div>
+
+      <br />
+
+      <div class="form-group">
+        <label class="w-6rem" for="firstName">First name</label>
+        <input
+          type="firstName"
+          pInputText
+          formControlName="firstName"
+          class="p-inputtext-sm"
+          id="firstName"
+          name="firstName"
+          placeholder="Enter your first name."
+        />
+      </div>
+      <div *ngIf="firstName.touched" class="error-message">
+        Please enter your first name.
+      </div>
+
+      <div class="form-group">
+        <label class="w-6rem" for="lastName">Last Name</label>
+        <input
+          type="lastName"
+          pInputText
+          formControlName="lastName"
+          class="p-inputtext-sm"
+          id="lastName"
+          name="lastName"
+          placeholder="Enter your last name."
+        />
+      </div>
+      <div *ngIf="lastName.touched" class="error-message">
+        Please enter your last name.
+      </div>
+
+      <br />
+      <div class="confirm">
+        <p-button
+          class="register-button"
+          type="submit"
+          label="Register"
+          icon="pi pi-key"
+          [rounded]="true"
+          [disabled]="!registerForm.valid"
+          [loading]="isLoading"
+        ></p-button>
+        <br />
+        <div><a [routerLink]="'/login'">Return to login</a></div>
+      </div>
+    </form>
+  </p-card>
+</div>

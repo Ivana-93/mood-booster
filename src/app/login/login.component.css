@@ -1,22 +1,64 @@
 .login {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+  justify-content: space-between;
+  flex: wrap;
+  align-content: center;
+  align-items: center;
+  margin-top: 6rem;
 }
 
 .form-login {
-    width: auto;
-    margin: 10px;
-    padding: 30px;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: nowrap;
+  align-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .form-group {
-    display: flex;
-    justify-content: space-between;
-    margin: 10px;
-    flex-wrap: wrap;
-    gap: 20px;
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+  gap: 20px;
 }
 
+.form-group label {
+  width: 100px;
+  align-self: center;
+}
 
+.form-group input {
+  width: 200px;
+}
+
+.login-button {
+  margin-top: 20px;
+}
+
+.register-button {
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.divider {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  margin: auto;
+}
+
+.error-message {
+    color: red;
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+}
