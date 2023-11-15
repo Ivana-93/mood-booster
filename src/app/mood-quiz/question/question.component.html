@@ -1,0 +1,12 @@
+<div *ngIf="question && questionNumber">
+  <h3 >
+    {{ questionNumber }}.{{ question.questionText }}
+  </h3>
+  <div>
+    <div *ngFor="let answer of question.answers; let i = index;" class="field-checkbox">
+      <p-radioButton [inputId]="i.toString()" name="answer" (onClick)="handleAnswerSelection(answer)" [(ngModel)]="selection" [value]="answer"></p-radioButton>
+      <label [for]="i.toString()" class="ml-2">{{ answer.answerText }}</label>
+  </div>
+  </div>
+</div>
+

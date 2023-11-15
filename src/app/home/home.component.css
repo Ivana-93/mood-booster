@@ -5,7 +5,15 @@
  width: 100%;
 }
 
-.test {
+.joke {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin: 20px;
+    width: 40%;
+}
+
+.quote {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;

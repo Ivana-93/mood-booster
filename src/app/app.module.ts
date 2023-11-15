@@ -24,6 +24,10 @@ import { StorageService } from './storage.service';
 import { JokesComponent } from './jokes/jokes.component';
 import { HeaderComponent } from './header/header.component';
 import { TabMenuModule } from 'primeng/tabmenu';
+import { QuotesComponent } from './quotes/quotes.component';
+import { MoodQuizComponent } from './mood-quiz/mood-quiz.component';
+import { QuestionComponent } from './mood-quiz/question/question.component';
+import { RadioButtonModule } from 'primeng/radiobutton';
 
 
 
@@ -35,6 +39,9 @@ import { TabMenuModule } from 'primeng/tabmenu';
     RegisterComponent,
     JokesComponent,
     HeaderComponent,
+    QuotesComponent,
+    MoodQuizComponent,
+    QuestionComponent,
   ],
   imports: [
     CommonModule,
@@ -54,6 +61,7 @@ import { TabMenuModule } from 'primeng/tabmenu';
     InputTextModule,
     PanelModule,
     TabMenuModule,
+    RadioButtonModule
    
   ],
   exports: [ButtonModule, DropdownModule, OverlayPanelModule, MessagesModule],

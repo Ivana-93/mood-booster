@@ -70,6 +70,40 @@ export class ApiService {
       );
   }
 
+
+  public getQuotes(): Observable<BaseResponse> {
+    return this.http
+      .get<BaseResponse>(`${this.GetApiUrl()}/quote`, {
+        headers: this.GetAuthenticationHeaders(),
+      })
+      .pipe(
+        map((response: BaseResponse) => {
+          if (!response.isSuccess) {
+            throw new Error(response.message);
+          }
+          return response;
+          
+        })
+      );
+  }
+
+  public getQuestions (): Observable<BaseResponse> {
+    return this.http
+      .get<BaseResponse>(`${this.GetApiUrl()}/questions`, {
+        headers: this.GetAuthenticationHeaders(),
+      })
+      .pipe(
+        map((response: BaseResponse) => {
+          if (!response.isSuccess) {
+            throw new Error(response.message);
+          }
+          return response;
+          
+        })
+      );
+  }
+
+
   private GetAuthenticationHeaders(): HttpHeaders {
     return new HttpHeaders({
       'Content-Type': 'application/json',

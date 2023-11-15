@@ -6,6 +6,7 @@ import { RegisterComponent } from './register/register.component';
 import { canActivateGuard } from './auth-guard.service';
 import { JokesComponent } from './jokes/jokes.component';
 import { HeaderComponent } from './header/header.component';
+import { QuotesComponent } from './quotes/quotes.component';
 
 
 const routes: Routes = [
@@ -13,7 +14,6 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'joke', component: JokesComponent, canActivate: [canActivateGuard] },
   { path: '', component: HomeComponent, canActivate: [canActivateGuard] },
-  { path: 'header', component: HeaderComponent},
   { path: '**', component: LoginComponent },
 
 ];

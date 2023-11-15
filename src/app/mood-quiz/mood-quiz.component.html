@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="mx-auto col-6">
+    <div class="container">
+      <p-card
+        class="card"
+        [header]="questions ? '' : 'How are you feeling? Find out!'"
+      >
+        <p-button
+          (click)="getQuestions()"
+          class="quiz-button"
+          type="button"
+          label="START QUIZ"
+          [rounded]="true"
+          [loading]="isLoading"
+          [style]="{ 'background-color': '#FFA69E' }"
+          *ngIf="!(!isLoading && questions!)"
+        >
+        </p-button>
+        <div *ngIf="questions">
+          <div *ngFor="let question of questions.questionList; let i = index">
+            <question
+              *ngIf="currentQuestion === i + 1"
+              [question]="question"
+              [questionNumber]="currentQuestion"
+              (selectedAnswer)="handleAnswerSelected(question, $event)"
+            ></question>
+          </div>
+          <button
+            *ngIf="currentQuestion < questions.questionList.length"
+            (click)="nextQuestion()"
+          >
+            Next Question
+          </button>
+          <button
+            *ngIf="currentQuestion == questions.questionList.length"
+            (click)="showResult()"
+          >
+            Find your result
+          </button>
+        </div>
+      </p-card>
+    </div>
+  </div>
+</div>

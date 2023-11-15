@@ -12,9 +12,7 @@ import { JokeData } from '../model/joke.model';
 })
 export class JokesComponent {
   constructor(
-    private router: Router,
     private apiService: ApiService,
-    private storageService: StorageService
   ) {}
 
     joke: string = ""
