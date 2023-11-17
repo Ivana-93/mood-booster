@@ -28,6 +28,9 @@ import { QuotesComponent } from './quotes/quotes.component';
 import { MoodQuizComponent } from './mood-quiz/mood-quiz.component';
 import { QuestionComponent } from './mood-quiz/question/question.component';
 import { RadioButtonModule } from 'primeng/radiobutton';
+import { ActivityComponent } from './activity/activity.component';
+import { MoodHistoryComponent } from './mood-history/mood-history.component';
+import { CalendarModule } from 'primeng/calendar';
 
 
 
@@ -42,6 +45,8 @@ import { RadioButtonModule } from 'primeng/radiobutton';
     QuotesComponent,
     MoodQuizComponent,
     QuestionComponent,
+    ActivityComponent,
+    MoodHistoryComponent,
   ],
   imports: [
     CommonModule,
@@ -61,7 +66,8 @@ import { RadioButtonModule } from 'primeng/radiobutton';
     InputTextModule,
     PanelModule,
     TabMenuModule,
-    RadioButtonModule
+    RadioButtonModule,
+    CalendarModule 
    
   ],
   exports: [ButtonModule, DropdownModule, OverlayPanelModule, MessagesModule],

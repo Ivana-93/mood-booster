@@ -28,13 +28,13 @@ export class JokesComponent {
     this.apiService.getJoke().subscribe(
       //success
       {
-        next: this.handleSuccess.bind(this),
+        next: this.handleJokeSuccess.bind(this),
         error: this.handleError.bind(this),
       }
     );
   }
 
-  private handleSuccess(responseData: SingleResponse<JokeData>): void {
+  private handleJokeSuccess(responseData: SingleResponse<JokeData>): void {
     var jokeData = responseData.data;
     this.joke = jokeData.content;
     this.isLoading = false;

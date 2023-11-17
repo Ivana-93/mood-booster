@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { LoginResponse } from './model/login-response.model';
 import { LoginCredentials } from './model/login-credentials.model';
 import { RegisterCredentials } from './model/register-credentials.models';
+import { PointsCount } from './model/questionData/points.model';
 
 @Injectable({ providedIn: 'root' })
 export class ApiService {
@@ -70,7 +71,6 @@ export class ApiService {
       );
   }
 
-
   public getQuotes(): Observable<BaseResponse> {
     return this.http
       .get<BaseResponse>(`${this.GetApiUrl()}/quote`, {
@@ -82,12 +82,11 @@ export class ApiService {
             throw new Error(response.message);
           }
           return response;
-          
         })
       );
   }
 
-  public getQuestions (): Observable<BaseResponse> {
+  public getQuestions(): Observable<BaseResponse> {
     return this.http
       .get<BaseResponse>(`${this.GetApiUrl()}/questions`, {
         headers: this.GetAuthenticationHeaders(),
@@ -98,11 +97,45 @@ export class ApiService {
             throw new Error(response.message);
           }
           return response;
-          
         })
       );
   }
 
+  public getRandomActivity(): Observable<BaseResponse> {
+    return this.http
+      .get<BaseResponse>(`${this.GetApiUrl()}/activity`, {
+        headers: this.GetAuthenticationHeaders(),
+      })
+      .pipe(
+        map((response: BaseResponse) => {
+          if (!response.isSuccess) {
+            throw new Error(response.message);
+          }
+          return response;
+        })
+      );
+  }
+
+  public postMoodQuizResult(pointCount: number): Observable<BaseResponse> {
+    return this.http
+      .post<BaseResponse>(
+        `${this.GetApiUrl()}/moodresult`,
+        {
+          pointCount,
+        },
+        {
+          headers: this.GetAuthenticationHeaders(),
+        }
+      )
+      .pipe(
+        map((response: BaseResponse) => {
+          if (!response.isSuccess) {
+            throw new Error(response.message);
+          }
+          return response;
+        })
+      );
+  }
 
   private GetAuthenticationHeaders(): HttpHeaders {
     return new HttpHeaders({

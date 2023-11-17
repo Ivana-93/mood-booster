@@ -1,0 +1,16 @@
+<div class="login row">
+    <div class="container mx-auto col-6">
+      <p-card class="card" header="You are bored?">
+          <p-button *ngIf="!isLoading"
+          (click)="getRandomActivity()" 
+          class="activity-button"
+          type="button"
+          [rounded]="true"
+          [loading]="isLoading"
+          [style]="{ 'background-color': '#FFA69E' }"       
+          >{{buttonLabel}}</p-button>
+          <p>{{activity}}</p>
+
+      </p-card>
+      </div>
+    </div>
