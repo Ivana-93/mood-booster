@@ -1,3 +1,10 @@
-<div class="card flex justify-content-center">
-    <p-calendar class="max-w-full" [(ngModel)]="date" [inline]="true" [showWeek]="true">"</p-calendar>
+<header></header>
+<div class="card flex justify-content-center ">
+    <full-calendar [options]="calendarOptions">
+        <ng-template #eventContent let-arg>
+            <p>{{arg.timeText}} 
+                <b>{{arg.event.title}}</b>
+            </p>
+          </ng-template>
+        </full-calendar>
 </div>

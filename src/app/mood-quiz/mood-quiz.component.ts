@@ -1,4 +1,4 @@
-import { Component, Input, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { SingleResponse } from '../model/responses.model';
 import { ApiService } from '../api.service';
 import { Questions } from '../model/questionData/questions.model';
@@ -7,6 +7,7 @@ import { Answer } from '../model/questionData/answer.model';
 import { PointsCount } from '../model/questionData/points.model';
 import { MoodResultData } from '../model/questionData/moodResult.model';
 import { Router } from '@angular/router';
+import { MoodHistoryComponent } from '../mood-history/mood-history.component';
 
 @Component({
   selector: 'mood-quiz',
@@ -45,7 +46,6 @@ export class MoodQuizComponent {
 
   public handleAnswerSelected(question:  Question, selectedAnswer: Answer): void {
      this.count += selectedAnswer.point;
-    
   }
 
   nextQuestion() {
@@ -72,7 +72,7 @@ export class MoodQuizComponent {
     this.router.navigate(["/"])
   }
 
-  saveMood() {
-
+  public saveMood() {
   }
+
 }

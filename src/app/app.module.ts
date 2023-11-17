@@ -31,6 +31,7 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { ActivityComponent } from './activity/activity.component';
 import { MoodHistoryComponent } from './mood-history/mood-history.component';
 import { CalendarModule } from 'primeng/calendar';
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 
 
@@ -67,7 +68,8 @@ import { CalendarModule } from 'primeng/calendar';
     PanelModule,
     TabMenuModule,
     RadioButtonModule,
-    CalendarModule 
+    CalendarModule,
+    FullCalendarModule
    
   ],
   exports: [ButtonModule, DropdownModule, OverlayPanelModule, MessagesModule],
