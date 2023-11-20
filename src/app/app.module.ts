@@ -32,6 +32,7 @@ import { ActivityComponent } from './activity/activity.component';
 import { MoodHistoryComponent } from './mood-history/mood-history.component';
 import { CalendarModule } from 'primeng/calendar';
 import { FullCalendarModule } from '@fullcalendar/angular';
+import { DairyComponent } from './dairy/dairy.component';
 
 
 
@@ -48,6 +49,7 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     QuestionComponent,
     ActivityComponent,
     MoodHistoryComponent,
+    DairyComponent,
   ],
   imports: [
     CommonModule,

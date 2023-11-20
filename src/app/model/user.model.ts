@@ -6,4 +6,5 @@ export class User{
     public password: string;
     public quotes: any[];
     public jokes: any[];
+    public moodData: any[];
 }

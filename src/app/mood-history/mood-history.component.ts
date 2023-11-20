@@ -2,6 +2,9 @@ import { Component, Input } from '@angular/core';
 import { CalendarOptions } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import { MoodResultData } from '../model/questionData/moodResult.model';
+import { ApiService } from '../api.service';
+import { SingleResponse } from '../model/responses.model';
+import { MoodData } from '../model/moodData.model';
 
 @Component({
   selector: 'mood-history',
@@ -19,6 +22,30 @@ export class MoodHistoryComponent {
     ]
   };
 
+  constructor(private apiService: ApiService){}
 
+  ngOnInit(){
+    this.getMoodHistoryCalendar()
+  }
 
+  getMoodHistoryCalendar() {
+    this.apiService.getMoodCalendar().subscribe({
+      next: this.handleMoodCalendarResponse.bind(this),
+      error: this.handleError.bind(this)
+    });
+  }
+
+  handleMoodCalendarResponse(responseData: SingleResponse<MoodData[]>): void {
+    this.calendarOptions.events = responseData.data.map(moodData => {
+      return {
+        title: moodData.moodTypeResult,
+        start: moodData.moodCreated
+      }
+    })
+  }
+
+  private handleError(error: Error): void {
+    confirm("Sorry! Something went wrong!")
+    console.log(error.message);
+  }
 }

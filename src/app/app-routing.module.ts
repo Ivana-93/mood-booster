@@ -14,6 +14,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'moodhistory', component: MoodHistoryComponent, canActivate: [canActivateGuard] },
+  {path: 'home', component:HomeComponent, canActivate: [canActivateGuard]},
   { path: '', component: HomeComponent, canActivate: [canActivateGuard] },
   { path: '**', component: LoginComponent },
 

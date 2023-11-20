@@ -73,6 +73,15 @@ export class MoodQuizComponent {
   }
 
   public saveMood() {
+    this.apiService.updateMoodHistoryData(this.moodType).subscribe({
+      next: this.handleMoodHistoryData.bind(this),
+      error: this.handleError.bind(this),
+    });
+  }
+
+  private handleMoodHistoryData(responseData: SingleResponse<MoodResultData>): void {
+    console.log("Saving mood history successfull")
+    this.router.navigate(["/"])
   }
 
 }

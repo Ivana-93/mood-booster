@@ -137,6 +137,41 @@ export class ApiService {
       );
   }
 
+  public updateMoodHistoryData(moodType: string): Observable<BaseResponse> {
+    return this.http
+      .post<BaseResponse>(
+        `${this.GetApiUrl()}/moodhistory`,
+        {
+          moodType,
+        },
+        {
+          headers: this.GetAuthenticationHeaders(),
+        }
+      )
+      .pipe(
+        map((response: BaseResponse) => {
+          if (!response.isSuccess) {
+            throw new Error(response.message);
+          }
+          return response;
+        })
+      );
+  }
+
+  public getMoodCalendar(): Observable<BaseResponse>{
+    return this.http.get<BaseResponse>(`${this.GetApiUrl()}/moodcalendar`, {
+      headers: this.GetAuthenticationHeaders(),
+    })
+    .pipe(
+      map((response: BaseResponse) => {
+        if (!response.isSuccess) {
+          throw new Error(response.message);
+        }
+        return response;
+      })
+    );
+  }
+
   private GetAuthenticationHeaders(): HttpHeaders {
     return new HttpHeaders({
       'Content-Type': 'application/json',
