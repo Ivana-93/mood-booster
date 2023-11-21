@@ -7,10 +7,10 @@ import {
   SingleResponse,
 } from '../model/responses.model';
 import { User } from '../model/user.model';
-import { LoginResponse } from '../model/login-response.model';
+import { LoginResponse } from '../model/Auth/login-response.model';
 import { Message } from 'primeng/api';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { LoginCredentials } from '../model/login-credentials.model';
+import { LoginCredentials } from '../model/Auth/login-credentials.model';
 import { StorageService } from '../storage.service';
 
 @Component({

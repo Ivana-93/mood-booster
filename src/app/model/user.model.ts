@@ -7,4 +7,5 @@ export class User{
     public quotes: any[];
     public jokes: any[];
     public moodData: any[];
+    public diaryEntries: any[];
 }

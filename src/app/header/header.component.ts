@@ -40,8 +40,8 @@ export class HeaderComponent {
     this.router.navigate(['/moodhistory']);
   }
 
-  navigateToDairy() {
-    this.router.navigate(['/dairy']);
+  navigateToDiary() {
+    this.router.navigate(['/diary']);
   }
 
 

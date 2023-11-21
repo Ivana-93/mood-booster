@@ -52,19 +52,17 @@ export class MoodQuizComponent {
     this.currentQuestion++;
   }
 
-
-  private handleMoodQuizResult(responseData: SingleResponse<MoodResultData>): void {
-    this.moodType = responseData.data.moodType;
-    this.moodText = responseData.data.moodText
-    this.isLoading = false;
-  }
-
   showResult() {
     this.isFinished = true;
     this.apiService.postMoodQuizResult(this.count).subscribe({
       next: this.handleMoodQuizResult.bind(this),
       error: this.handleError.bind(this),
     });
+  }
+  private handleMoodQuizResult(responseData: SingleResponse<MoodResultData>): void {
+    this.moodType = responseData.data.moodType;
+    this.moodText = responseData.data.moodText
+    this.isLoading = false;
   }
 
 

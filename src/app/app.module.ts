@@ -32,7 +32,9 @@ import { ActivityComponent } from './activity/activity.component';
 import { MoodHistoryComponent } from './mood-history/mood-history.component';
 import { CalendarModule } from 'primeng/calendar';
 import { FullCalendarModule } from '@fullcalendar/angular';
-import { DairyComponent } from './dairy/dairy.component';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { DiaryComponent } from './diary/diary.component';
+import { FieldsetModule } from 'primeng/fieldset';
 
 
 
@@ -49,7 +51,8 @@ import { DairyComponent } from './dairy/dairy.component';
     QuestionComponent,
     ActivityComponent,
     MoodHistoryComponent,
-    DairyComponent,
+    DiaryComponent
+
   ],
   imports: [
     CommonModule,
@@ -71,7 +74,9 @@ import { DairyComponent } from './dairy/dairy.component';
     TabMenuModule,
     RadioButtonModule,
     CalendarModule,
-    FullCalendarModule
+    FullCalendarModule,
+    InputTextareaModule,
+    FieldsetModule,
    
   ],
   exports: [ButtonModule, DropdownModule, OverlayPanelModule, MessagesModule],

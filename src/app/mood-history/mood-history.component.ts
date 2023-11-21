@@ -1,7 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CalendarOptions } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
-import { MoodResultData } from '../model/questionData/moodResult.model';
 import { ApiService } from '../api.service';
 import { SingleResponse } from '../model/responses.model';
 import { MoodData } from '../model/moodData.model';
@@ -11,7 +10,7 @@ import { MoodData } from '../model/moodData.model';
   templateUrl: './mood-history.component.html',
   styleUrls: ['./mood-history.component.css']
 })
-export class MoodHistoryComponent {
+export class MoodHistoryComponent implements OnInit{
 
   calendarOptions: CalendarOptions = {
     plugins: [dayGridPlugin],

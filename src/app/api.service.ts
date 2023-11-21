@@ -3,8 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { BaseResponse, SingleResponse } from './model/responses.model';
 import { Observable } from 'rxjs';
-import { LoginResponse } from './model/login-response.model';
-import { LoginCredentials } from './model/login-credentials.model';
+import { LoginResponse } from './model/Auth/login-response.model';
+import { LoginCredentials } from './model/Auth/login-credentials.model';
 import { RegisterCredentials } from './model/register-credentials.models';
 import { PointsCount } from './model/questionData/points.model';
 
@@ -158,18 +158,57 @@ export class ApiService {
       );
   }
 
-  public getMoodCalendar(): Observable<BaseResponse>{
-    return this.http.get<BaseResponse>(`${this.GetApiUrl()}/moodcalendar`, {
-      headers: this.GetAuthenticationHeaders(),
-    })
-    .pipe(
-      map((response: BaseResponse) => {
-        if (!response.isSuccess) {
-          throw new Error(response.message);
-        }
-        return response;
+  public getMoodCalendar(): Observable<BaseResponse> {
+    return this.http
+      .get<BaseResponse>(`${this.GetApiUrl()}/moodcalendar`, {
+        headers: this.GetAuthenticationHeaders(),
       })
-    );
+      .pipe(
+        map((response: BaseResponse) => {
+          if (!response.isSuccess) {
+            throw new Error(response.message);
+          }
+          return response;
+        })
+      );
+  }
+
+  public updateDiary(value: string): Observable<BaseResponse> {
+    return this.http
+      .post<BaseResponse>(
+        `${this.GetApiUrl()}/newdiaryentry`,
+        {
+          //ovdje je text jer je property na backendu tog objekta naziva text
+          // value je ono čija se vrijednost dodjeljuje na property text
+          text: value,
+        },
+        {
+          headers: this.GetAuthenticationHeaders(),
+        }
+      )
+      .pipe(
+        map((response: BaseResponse) => {
+          if (!response.isSuccess) {
+            throw new Error(response.message);
+          }
+          return response;
+        })
+      );
+  }
+
+  public getDiaryEntries(): Observable<BaseResponse> {
+    return this.http
+      .get<BaseResponse>(`${this.GetApiUrl()}/diaryentry`, {
+        headers: this.GetAuthenticationHeaders(),
+      })
+      .pipe(
+        map((response: BaseResponse) => {
+          if (!response.isSuccess) {
+            throw new Error(response.message);
+          }
+          return response;
+        })
+      );
   }
 
   private GetAuthenticationHeaders(): HttpHeaders {
