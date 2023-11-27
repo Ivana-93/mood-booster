@@ -1,10 +1,33 @@
-<header></header>
-<div class="card flex justify-content-center ">
+<div class="card flex justify-content-center">
+  <div class="row w-100">
+    <div class="col-md-6 col-sm-8">
+      <img
+        class="image"
+        src="assets/images/mood-calendar.jpg"
+        alt="Mood Calendar"
+      />
+    </div>
+    <div class=" right col-md-6 col-sm-4 my-auto">
+      <p-card header="Welcome To Mood Calendar!">
+        <p class="m-0">
+          Life isn't always a smooth sail, but understanding the patterns of
+          your moods can make the journey a little more predictable and
+          manageable. This mood calendar allows you to track and visualize your
+          emotional landscape throughout the week, turning the seemingly random
+          fluctuations into a map for self-discovery.
+        </p>
+    </p-card>
+    </div>
+    <hr color="#ff66b3">
+  </div>
+  <div class="calendar row w-100">
     <full-calendar [options]="calendarOptions">
-        <ng-template #eventContent let-arg>
-            <p>{{arg.timeText}} 
-                <b>{{arg.event.title}}</b>
-            </p>
-          </ng-template>
-        </full-calendar>
+      <ng-template #eventContent let-arg>
+        <p>
+          {{ arg.timeText }}
+          <b>{{ arg.event.title }}</b>
+        </p>
+      </ng-template>
+    </full-calendar>
+  </div>
 </div>

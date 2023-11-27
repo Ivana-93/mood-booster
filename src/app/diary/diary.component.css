@@ -1,16 +1,21 @@
 .card {
     margin-left: 10%;
     margin-right: 10%;
-    margin-top: 5%;
+    margin-top: 2%;
     margin-bottom: 5%;
     text-align: center;
+    justify-content: center;
 }
 
 .button {
     margin-top: 2%;
+    margin-bottom: 2%;
 }
 
 .list-of-thoughts {
     text-align: left;
-    margin: 10%;
+}
+
+.diary-quote{
+    margin-bottom: 2%;
 }

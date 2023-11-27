@@ -7,7 +7,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { ApiService } from './api.service';
 import { RegisterComponent } from './register/register.component';
@@ -21,39 +20,18 @@ import { MessagesModule } from 'primeng/messages';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { PanelModule } from 'primeng/panel';
 import { StorageService } from './storage.service';
-import { JokesComponent } from './jokes/jokes.component';
-import { HeaderComponent } from './header/header.component';
 import { TabMenuModule } from 'primeng/tabmenu';
-import { QuotesComponent } from './quotes/quotes.component';
-import { MoodQuizComponent } from './mood-quiz/mood-quiz.component';
-import { QuestionComponent } from './mood-quiz/question/question.component';
 import { RadioButtonModule } from 'primeng/radiobutton';
-import { ActivityComponent } from './activity/activity.component';
-import { MoodHistoryComponent } from './mood-history/mood-history.component';
-import { CalendarModule } from 'primeng/calendar';
-import { FullCalendarModule } from '@fullcalendar/angular';
-import { InputTextareaModule } from 'primeng/inputtextarea';
-import { DiaryComponent } from './diary/diary.component';
-import { FieldsetModule } from 'primeng/fieldset';
-
+import { MainLayoutModule } from './main-layout/main-layout.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     LoginComponent,
     RegisterComponent,
-    JokesComponent,
-    HeaderComponent,
-    QuotesComponent,
-    MoodQuizComponent,
-    QuestionComponent,
-    ActivityComponent,
-    MoodHistoryComponent,
-    DiaryComponent
+    ],
 
-  ],
   imports: [
     CommonModule,
     BrowserModule,
@@ -63,7 +41,6 @@ import { FieldsetModule } from 'primeng/fieldset';
     FormsModule,
     ReactiveFormsModule,
     ButtonModule,
-    DropdownModule,
     OverlayPanelModule,
     MessagesModule,
     MessageModule,
@@ -73,10 +50,7 @@ import { FieldsetModule } from 'primeng/fieldset';
     PanelModule,
     TabMenuModule,
     RadioButtonModule,
-    CalendarModule,
-    FullCalendarModule,
-    InputTextareaModule,
-    FieldsetModule,
+    MainLayoutModule,
    
   ],
   exports: [ButtonModule, DropdownModule, OverlayPanelModule, MessagesModule],

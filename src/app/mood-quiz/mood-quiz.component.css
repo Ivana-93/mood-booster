@@ -1,10 +1,5 @@
-:host ::ng-deep.p-card {
-    background-color: #DDFFF7;
-    justify-content: center;
+:host ::ng-deep p-card .p-card.p-component{
+    height: 300px;   
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-content: center;
-    align-items: center;
-    text-align: center;
+    justify-content: center;
 }

@@ -1,7 +1,9 @@
-<header></header>
-<div class="card row-cols-md-1">
-  <h3>"People who keep journals have life twice."</h3>
-  <p>Jessamyn West</p>
+<div class="card row">
+  <div class="diary-quote col-md-8 col-sm-6">
+    <p-card><h3>"People who keep journals have life twice."</h3>
+      <p>Jessamyn West</p></p-card>
+    
+  </div>
   <textarea
     class="dairy"
     rows="15"
@@ -17,11 +19,12 @@
       label="SAVE YOUR THOUGHTS"
       [rounded]="true"
       [loading]="isLoading"
-      [style]="{ 'background-color': '#FFA69E' }"
+      
     ></p-button>
   </div>
   <div class="list-of-thoughts" >
     <h3>Want to unraveled what you thought before?</h3>
+    <hr color="#ff66b3">
     <ul *ngFor="let entry of entries">
       <li><p-fieldset legend={{entry.dateCreated}} [toggleable]="true" [collapsed]="true">
         <p>{{entry.text}}</p>

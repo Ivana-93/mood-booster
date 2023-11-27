@@ -1,10 +1,16 @@
-:host ::ng-deep.p-card {
-    background-color: #DDFFF7;
-    justify-content: center;
+.list-of-quotes{
+    color: #677988;
+    background-color: #F8B4D8;
+}
+
+.button{
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-content: center;
+    flex-direction: column;
     align-items: center;
-    text-align: center;
+    justify-content: center;
+}
+
+:host::ng-deep.p-dataview .p-dataview-content{
+    background: #b2ffd8;
+    color: #677988;
 }

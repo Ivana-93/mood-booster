@@ -44,7 +44,7 @@ export class MoodHistoryComponent implements OnInit{
   }
 
   private handleError(error: Error): void {
-    confirm("Sorry! Something went wrong!")
+    //confirm("Sorry! Something went wrong!")
     console.log(error.message);
   }
 }

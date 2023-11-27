@@ -211,6 +211,21 @@ export class ApiService {
       );
   }
 
+  public getUserQuotes(): Observable<BaseResponse> {
+    return this.http
+      .get<BaseResponse>(`${this.GetApiUrl()}/quotes`, {
+        headers: this.GetAuthenticationHeaders(),
+      })
+      .pipe(
+        map((response: BaseResponse) => {
+          if (!response.isSuccess) {
+            throw new Error(response.message);
+          }
+          return response;
+        })
+      );
+  }
+
   private GetAuthenticationHeaders(): HttpHeaders {
     return new HttpHeaders({
       'Content-Type': 'application/json',

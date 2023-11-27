@@ -1,22 +1,22 @@
-.row {
- display: flex;
- flex-direction: row;
- flex-wrap: wrap;
- width: 100%;
+.first-image {
+    height: 100%;
+    width: 90%;
+    margin-left: 20%
 }
 
-.joke {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    margin: 20px;
-    width: 40%;
+.second-image {
+    height: 100%;
+    width: 90%;
+    margin-top: 1%;
+    margin-right: 10%;
 }
 
-.quote {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    margin: 20px;
-    width: 40%;
+
+.quiz {
+    height: 100%;
+    margin-left:10%;
+}
+
+.first-row-content{
+    height: 300px;
 }

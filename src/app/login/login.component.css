@@ -1,9 +1,11 @@
-.login {
-  justify-content: space-between;
-  flex: wrap;
+.container{
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   align-content: center;
+  justify-content: center;
   align-items: center;
-  margin-top: 6rem;
 }
 
 .form-login {
@@ -57,7 +59,6 @@
 }
 
 .error-message {
-    color: red;
     font-size: 12px;
     margin: 0;
     padding: 0;

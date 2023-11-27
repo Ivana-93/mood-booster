@@ -45,7 +45,7 @@ export class DiaryComponent implements OnInit{
   }
 
   handleError(error: Error): void {
-    confirm(error.message)
+    //confirm(error.message)
   }
 
 

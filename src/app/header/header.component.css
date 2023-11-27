@@ -5,41 +5,12 @@
     justify-content: center;
     align-items: flex-start;
 }
-
-:host::ng-deep .p-button{
-    border: 0;
-    border-radius: 0%;
-    background-color: #93e1d8;
-    height: 60px;
-}
-
-:host ::ng-deep.header {
-    background-color: #93e1d8;
-    height: 60px;
-    width: 100%;
+.header{
     display: flex;
-    flex-direction: row; 
-    justify-content: space-evenly;
-}
-
-.left {
-    display: flex;
-    width: 50%;
-    justify-content: space-evenly;
-    flex-direction: row;
-    align-items: center;
-}
-
-.right {
-    display: flex;
-    width: 30%;
-    justify-content: space-evenly;
-    flex-direction: row;
-    justify-content: right;
-}
-
-
-:host ::ng-deep.p-button-text {
-    background-color: pink !important;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 1rem;
+    margin-left: 5%;
+    margin-right: 5%;
 }
 

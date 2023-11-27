@@ -1,75 +1,77 @@
-<div class="login row">
-  <div class="container col-md-6 col-sm-12">
-    <form [formGroup]="loginForm" class="form-login" (ngSubmit)="onLogin()">
-      <div class="form-group">
-        <label class="w-6rem" for="email">Email</label>
-        <input
-          (blur)="validateEmail()"
-          type="text"
-          pInputText
-          formControlName="email"
-          class="p-inputtext-sm"
-          id="email"
-          name="email"
-          placeholder="Enter your email"
-        />
-      </div>
-      <div *ngIf="email.invalid && email.touched" class="error-message">
-        Hi! Please enter a valid email.
-      </div>
-      <div class="form-group">
-        <label class="w-6rem" for="password">Password</label>
-        <input
-          type="password"
-          pInputText
-          formControlName="password"
-          class="p-inputtext-sm"
-          id="password"
-          name="password"
-          placeholder="Enter password"
-        />
-        <div *ngIf="password.invalid && password.touched" class="error-message">
-          Password is not correct.
+<div class="container">
+  <div class="row w-100">
+    <div class="container col-md-6 col-sm-12">
+      <form [formGroup]="loginForm" class="form-login" (ngSubmit)="onLogin()">
+        <div class="form-group">
+          <label class="w-6rem" for="email">Email</label>
+          <input
+            (blur)="validateEmail()"
+            type="text"
+            pInputText
+            formControlName="email"
+            class="p-inputtext-sm"
+            id="email"
+            name="email"
+            placeholder="Enter your email"
+          />
         </div>
-      </div>
+        <div *ngIf="email.invalid && email.touched" class="error-message">
+          Hi! Please enter a valid email.
+        </div>
+        <div class="form-group">
+          <label class="w-6rem" for="password">Password</label>
+          <input
+            type="password"
+            pInputText
+            formControlName="password"
+            class="p-inputtext-sm"
+            id="password"
+            name="password"
+            placeholder="Enter password"
+          />
+          <div *ngIf="password.invalid && password.touched" class="error-message">
+            Password is not correct.
+          </div>
+        </div>
+        <p-button
+          class="login-button"
+          type="submit"
+          label="Login"
+          icon="pi pi-user"
+          [rounded]="true"
+          [disabled]="!loginForm.valid"
+          [loading]="isLoading"
+        ></p-button>
+      </form>
+    </div>
+    <div class="divider col-md-1 col-sm-12">
+        <p-divider
+          layout="vertical"
+          styleClass="d-sm-none:hidden"
+          class="d-sm-none d-xs-none d-md-block d-lg-block"
+        >
+          <b>OR</b></p-divider
+        >
+        <p-divider
+          class="d-sm-block d-xs-block d-md-none d-lg-none"
+          layout="horizontal"
+          styleClass="d-md-none:hidden"
+          [align]="'center'"
+        >
+          <b>OR</b></p-divider
+        >
+    </div>
+    <div
+      class="container col-md-5 col-sm-12">
       <p-button
-        class="login-button"
+        class="register-button"
         type="submit"
-        label="Login"
+        label="Register"
         icon="pi pi-user"
         [rounded]="true"
-        [disabled]="!loginForm.valid"
-        [loading]="isLoading"
+        
       ></p-button>
-    </form>
-  </div>
-  <div class="container col-md-1 col-sm-12">
-    <div class="divider">
-      <p-divider
-        layout="vertical"
-        class="d-sm-none d-xs-none d-md-block d-lg-block"
-      >
-        <b>OR</b></p-divider
-      >
-      <p-divider
-        class="d-sm-block d-xs-block d-md-none d-lg-none"
-        layout="horizontal"
-        [align]="'center'"
-      >
-        <b>OR</b></p-divider
-      >
     </div>
-  </div>
-  <div
-    class="col-md-5 col-sm-12 d-flex align-content-center align-items-center"
-  >
-    <p-button
-      class="register-button"
-      type="submit"
-      label="Register"
-      icon="pi pi-user"
-      [rounded]="true"
-      
-    ></p-button>
-  </div>
+</div>
+
 </div>

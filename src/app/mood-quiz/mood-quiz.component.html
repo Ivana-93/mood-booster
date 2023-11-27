@@ -1,61 +1,58 @@
-<div class="row">
-  <div class="mx-auto col-6">
-    <div class="container">
-      <p-card
-        class="card"
-        [header]="questions ? '' : 'How are you feeling? Find out!'"
+<p-card 
+    class="card"
+    [header]="questions ? '' : 'How Are You Feeling?'"
+    subheader="Check your mood!"
+  >
+    <p-button
+      (click)="getQuestions()"
+      class="quiz-button"
+      type="button"
+      label="START QUIZ"
+      [rounded]="true"
+      [loading]="isLoading"
+      *ngIf="!(!isLoading && questions!)"
+    >
+    </p-button>
+    <div *ngIf="questions && !isFinished">
+      <div *ngFor="let question of questions.questionList; let i = index">
+        <question
+          *ngIf="currentQuestion === i + 1"
+          [question]="question"
+          [questionNumber]="currentQuestion"
+          (selectedAnswer)="handleAnswerSelected(question, $event)"
+        ></question>
+      </div>
+      <button
+        *ngIf="currentQuestion < questions.questionList.length"
+        (click)="nextQuestion()"
       >
-        <p-button
-          (click)="getQuestions()"
-          class="quiz-button"
-          type="button"
-          label="START QUIZ"
-          [rounded]="true"
-          [loading]="isLoading"
-          [style]="{ 'background-color': '#FFA69E' }"
-          *ngIf="!(!isLoading && questions!)"
-        >
-        </p-button>
-        <div *ngIf="questions && !isFinished">
-          <div *ngFor="let question of questions.questionList; let i = index">
-            <question
-              *ngIf="currentQuestion === i + 1"
-              [question]="question"
-              [questionNumber]="currentQuestion"
-              (selectedAnswer)="handleAnswerSelected(question, $event)"
-            ></question>
-          </div>
-          <button
-            *ngIf="currentQuestion < questions.questionList.length"
-            (click)="nextQuestion()"
-          >
-            Next Question
-          </button>
-          <button
-            *ngIf="currentQuestion == questions.questionList.length"
-            (click)="showResult()">
-            Find out your result
-          </button>
-        </div>
-        <div *ngIf="isFinished">
-          <h3>{{ moodType }}</h3>
-          <p>{{ moodText }}</p>
-          <br>
-          <h4>Do you want to save your result in mood history calendar?</h4>
-          <p-button (click)="saveMood()"
-          class="quiz-button"
-          type="button"
-          label="YES"
-          [rounded]="true"
-          [style]="{ 'background-color': '#FFA69E' }"></p-button>
-          <p-button (click)="noSaveMood()"
-          class="quiz-button"
-          type="button"
-          label="NO"
-          [rounded]="true"
-          [style]="{ 'background-color': '#FFA69E' }"></p-button>
-        </div>
-      </p-card>
+        Next Question
+      </button>
+      <button
+        *ngIf="currentQuestion == questions.questionList.length"
+        (click)="showResult()"
+      >
+        Find out your result
+      </button>
     </div>
-  </div>
-</div>
+    <div *ngIf="isFinished">
+      <h3>{{ moodType }}</h3>
+      <p>{{ moodText }}</p>
+      <br />
+      <h4>Do you want to save your result in mood history calendar?</h4>
+      <p-button
+        (click)="saveMood()"
+        class="quiz-button"
+        type="button"
+        label="YES"
+        [rounded]="true"
+      ></p-button>
+      <p-button
+        (click)="noSaveMood()"
+        class="quiz-button"
+        type="button"
+        label="NO"
+        [rounded]="true"
+      ></p-button>
+    </div>
+  </p-card>

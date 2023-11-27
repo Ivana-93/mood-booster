@@ -1,58 +1,41 @@
-<div class="header">
+<div #header class="header" >
   <div class="left">
-    <p-button
-      label="Home"
-      icon="pi pi-home"
-      styleClass="p-button-text"
-      (onClick)="navigateToHome()"
-    ></p-button>
-    <p-button
-      label="Game Quiz"
-      icon="pi pi-question-circle"
-      styleClass="p-button-text"
-      (onClick)="navigateToQuiz()"
-    ></p-button>
-    <p-button
-      label="Mood History"
-      icon="pi pi-calendar"
-      styleClass="p-button-text"
-      (onClick)="navigateToMoodHistory()"
-    ></p-button>
-    <p-button
-      label="Your Diary"
-      icon="pi pi-book"
-      styleClass="p-button-text"
-      (onClick)="navigateToDiary()"
-    ></p-button>
+    <p-tabView (onChange)="navigateTo($event)">
+      <p-tabPanel header="Home" leftIcon="pi pi-home" [disabled]="false">
+      </p-tabPanel>
+      <p-tabPanel header="Game Quiz" leftIcon="pi pi-question-circle">
+      </p-tabPanel>
+      <p-tabPanel header="Mood History" leftIcon="pi pi-calendar"> </p-tabPanel>
+      <p-tabPanel header="Your Diary" leftIcon="pi pi-book"></p-tabPanel>
+    </p-tabView>
   </div>
-  <div class="right">
-    <p-button
-      label="Account"
-      icon="pi pi-user"
-      styleClass="p-button-text"
-      (click)="op.toggle($event)"
-    ></p-button>
+  <!-- nemoj se ljutiti, samo sam ubacio dva wrapper diva, 
+    koji oznacavaju lijevu i desnu stranu cijelog  headera 
+    i onda sam nakacio overlay na desnu stranu.
+    same klase left i right nista ne rade nego samo sluze kao opis sto taj div radi. 
+    Predlazem da to ne izbrises jer onda mozes lako applyat
+    nekakve stilove samo na lijevu ili samo na desnu stranu" -->
+  <div #anchor class="right">
+    <p-tabView 
+    [(activeIndex)]="overlayIndex"
+    (onChange)="toggleOverlay($event, op, anchor)"
+  >
+    <p-tabPanel header="Account" leftIcon="pi pi-user"> </p-tabPanel>
+    <p-tabPanel headerStyleClass="d-none"> </p-tabPanel>
+  </p-tabView>
   </div>
 </div>
 
-<p-overlayPanel #op>
+<p-overlayPanel styleClass="position"  #op (onHide)="handleOnHide()">
   <div class="vertical-layout">
-    <p-button
-      *ngIf="!isLoggedin"
-      [routerLink]="['/login']"
-      label="Login"
-      icon="pi pi-sign-in"
-      styleClass="p-button-text"
-      [style]="{ 'background-color': '#FFA69E' }"
-    ></p-button>
     <p>{{ userInfo }}</p>
     <p-button
       *ngIf="isLoggedin"
       (onClick)="logout()"
       label="Logout"
       icon="pi pi-sign-out"
+      [rounded]="true"
       styleClass="p-button-text"
-      [style]="{ 'background-color': '#FFA69E' }"
     ></p-button>
   </div>
 </p-overlayPanel>

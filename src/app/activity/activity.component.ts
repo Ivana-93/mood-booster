@@ -14,7 +14,7 @@ export class ActivityComponent {
 
   activity : string = "";
   isLoading = false;
-  buttonLabel = 'FIND INSPIRATION';
+  buttonLabel = 'FIND ACTIVITY';
   clickCount = 1;
 
   public getRandomActivity () {
