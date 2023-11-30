@@ -51,7 +51,7 @@
   --my-secondary-text-color: #677988;
   --my-secondary-color: #F8B4D8;
   --my-background-color: #b2ffd8;
-  --my-error-color: #FFFF66; 
+  --my-error-color: #ff6667; 
 }
 
 
@@ -1226,10 +1226,10 @@
     outline: 0 none;
     outline-offset: 0;
     box-shadow: none;
-    border-color: #673AB7;
+    border-color: var(--my-primary-color);
   }
   .p-inputtext.ng-dirty.ng-invalid {
-    border-color: #B00020;
+    border-color: var(--my-error-color);
   }
   .p-inputtext.p-inputtext-sm {
     font-size: 0.875rem;
@@ -1939,12 +1939,12 @@
   }
   .p-button:enabled:hover {
     background: var(--my-secondary-color);
-    color: var(--my-primary-text-color);
+    color: var(--my-secondary-text-color);
     border-color: transparent;
   }
   .p-button:enabled:active {
-    background: var(--my-primary-color);
-    color: #ffffff;
+    background: var(--my-secondar-color);
+    color: var(--my-secondary-text-color);
     border-color: transparent;
   }
   .p-button.p-button-outlined {
@@ -1954,7 +1954,7 @@
   }
   .p-button.p-button-outlined:enabled:hover {
     background: var(--my-secondary-color);
-    color: #ffffff;
+    color: var(--my-secondary-text-color);
     border: 0 none;
   }
   .p-button.p-button-outlined:enabled:active {
@@ -1975,17 +1975,17 @@
     color: rgba(0, 0, 0, 0.6);
   }
   .p-button.p-button-text {
-    background-color: transparent;
+    background-color: var(--my-secondary-color);
     color: #ffffff;
     border-color: transparent;
   }
   .p-button.p-button-text:enabled:hover {
-    background: #FA9DB4;
-    color: #ffffff;
+    background: var(--my-secondary-color);
+    color: var(--my-secondary-text-color);
     border-color: transparent;
   }
   .p-button.p-button-text:enabled:active {
-    background: #FA9DB4;
+    background: var(--my-primary-color);
     color: #ffffff;
     border-color: transparent;
   }
@@ -2025,8 +2025,8 @@
     min-width: 1rem;
     height: 1rem;
     line-height: 1rem;
-    color: #673AB7;
-    background-color: #ffffff;
+    color: #ffffff;
+    background-color: var(--my-primary-color);
   }
   .p-button.p-button-raised {
     box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
@@ -4189,8 +4189,8 @@
   }
 
   .p-confirm-popup {
-    background: #ffffff;
-    color: rgba(0, 0, 0, 0.87);
+    background: #E0FFEF;
+    color: var(--my-primary-text-color);
     border: 0 none;
     border-radius: 4px;
     box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12);
@@ -4211,12 +4211,12 @@
   }
   .p-confirm-popup:after {
     border: solid transparent;
-    border-color: var(--my-text-color-on-white);
+    border-color: var(--my-primary-text-color);
     border-bottom-color: #ffffff;
   }
   .p-confirm-popup:before {
     border: solid transparent;
-    border-color: var(--my-text-color-on-white);
+    border-color: var(--my-primary-text-color);
     border-bottom-color: #ffffff;
   }
   .p-confirm-popup.p-confirm-popup-flipped:after {
@@ -4243,9 +4243,9 @@
   }
   .p-dialog .p-dialog-header {
     border-bottom: 0 none;
-    background: #ffffff;
-    color: rgba(0, 0, 0, 0.87);
-    padding: 1.5rem;
+    background: #E0FFEF;
+    color: var(--my-primary-text-color);
+    padding: 0rem;
     border-top-right-radius: 4px;
     border-top-left-radius: 4px;
   }
@@ -4277,8 +4277,8 @@
     margin-right: 0;
   }
   .p-dialog .p-dialog-content {
-    background: #ffffff;
-    color: rgba(0, 0, 0, 0.87);
+    background: #E0FFEF;
+    color: var(--my-primary-text-color);
     padding: 0 1.5rem 1.5rem 1.5rem;
   }
   .p-dialog .p-dialog-content:last-of-type {
@@ -6244,10 +6244,10 @@
     min-width: auto;
   }
   .p-button:enabled:focus {
-    background: var(--my-secondar-color);
+    background: var(--my-secondary-color);
   }
   .p-button:enabled:active {
-    background: var(--my-secondar-color);
+    background: var(--my-secondary-color);
   }
   .p-button .p-ink {
     background-color: var(--my-secondar-color);

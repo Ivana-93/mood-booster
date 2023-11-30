@@ -9,6 +9,7 @@ import {
 } from '@angular/router';
 
 import { Observable } from 'rxjs';
+import { StorageKeys, storage } from './storage.service';
  
 
 
@@ -20,7 +21,7 @@ export const canActivateGuard: CanActivateFn = (
    boolean | 
    UrlTree  => {
     const router = inject(Router);
-    if (!localStorage.getItem('token')) {
+    if (!storage.getItem(StorageKeys.ACCESS_TOKEN)) {
             router.navigate(['/login']);
             return false;
     }

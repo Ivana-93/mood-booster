@@ -15,6 +15,8 @@ import { MoodHistoryComponent } from '../mood-history/mood-history.component';
   styleUrls: ['./mood-quiz.component.css'],
 })
 export class MoodQuizComponent {
+  visible: boolean = false;
+  isClicked= false;
   questions: Questions = undefined;
   currentQuestion: number = 1;
   isLoading = false;
@@ -28,6 +30,7 @@ export class MoodQuizComponent {
 
   public getQuestions(): void {
     this.isLoading = true;
+    this.visible = true;
     this.apiService.getQuestions().subscribe({
       next: this.handleSuccess.bind(this),
       error: this.handleError.bind(this),
@@ -45,11 +48,13 @@ export class MoodQuizComponent {
   }
 
   public handleAnswerSelected(question:  Question, selectedAnswer: Answer): void {
-     this.count += selectedAnswer.point;
+    this.isClicked = true;
+    this.count += selectedAnswer.point;
   }
 
   nextQuestion() {
     this.currentQuestion++;
+    this.isClicked = false;
   }
 
   showResult() {
@@ -68,6 +73,7 @@ export class MoodQuizComponent {
 
   noSaveMood(){
     this.router.navigate(["/"])
+    this.visible = false;
   }
 
   public saveMood() {
@@ -75,6 +81,7 @@ export class MoodQuizComponent {
       next: this.handleMoodHistoryData.bind(this),
       error: this.handleError.bind(this),
     });
+    this.visible = false;
   }
 
   private handleMoodHistoryData(responseData: SingleResponse<MoodResultData>): void {

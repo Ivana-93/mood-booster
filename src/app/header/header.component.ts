@@ -4,6 +4,7 @@ import { User } from '../model/user.model';
 import { StorageService } from '../storage.service';
 import { TabViewChangeEvent } from 'primeng/tabview';
 import { OverlayPanel } from 'primeng/overlaypanel';
+import { ConfirmationService} from 'primeng/api';
 
 @Component({
   selector: 'header',
@@ -17,10 +18,14 @@ export class HeaderComponent {
 
   public overlayIndex: number = 1;
 
-  constructor(private router: Router, private storageService: StorageService) {}
+  constructor(
+    private router: Router,
+    private storageService: StorageService,
+    private confirmationService: ConfirmationService,
+  ) {}
 
   ngOnInit() {
-    if (this.storageService.getToken() === null) {
+    if (this.storageService.getAccessToken() === null) {
       this.isLoggedin = false;
     }
     this.user = this.storageService.getUser();
@@ -62,7 +67,7 @@ export class HeaderComponent {
     this.overlayIndex = 1;
   }
 
-  position={'margin-left': '800rem'}
+  position = { 'margin-left': '800rem' };
 
   navigateToHome() {
     this.router.navigate(['/home']);
@@ -80,13 +85,18 @@ export class HeaderComponent {
     this.router.navigate(['/diary']);
   }
 
-  logout() {
-    const confirmation = confirm('Are you sure you want to logout?');
-    if (confirmation) {
-      this.storageService.removeToken();
-      this.storageService.removeUser();
-      this.router.navigate(['/login']);
-    }
-    this.isLoggedin = false;
+  logout(event: Event) {
+    this.confirmationService.confirm({
+      target: event.target as EventTarget,
+      message: 'Are you sure you want to logout?',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.storageService.removeAccessToken();
+        this.storageService.removeUser();
+        this.router.navigate(['/login']);
+      },
+      reject: () => {},
+    });
+    
   }
 }

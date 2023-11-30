@@ -32,6 +32,11 @@ import { TabMenuModule } from 'primeng/tabmenu';
 import { TabViewModule } from 'primeng/tabview';
 import { MainLayoutComponent } from './main-layout.component';
 import { DataViewModule } from 'primeng/dataview';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { DialogModule } from 'primeng/dialog';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { ToastModule } from 'primeng/toast';
+
 
 @NgModule({
   declarations: [
@@ -70,7 +75,12 @@ MainLayoutComponent,
     InputTextareaModule,
     FieldsetModule,
     TabViewModule,
-    DataViewModule
+    DataViewModule,
+    ConfirmDialogModule,
+    DialogModule,
+    ConfirmPopupModule,
+    ToastModule
+
   ],
   exports:[
     JokesComponent,

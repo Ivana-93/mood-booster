@@ -7,10 +7,12 @@ import { LoginResponse } from './model/Auth/login-response.model';
 import { LoginCredentials } from './model/Auth/login-credentials.model';
 import { RegisterCredentials } from './model/register-credentials.models';
 import { PointsCount } from './model/questionData/points.model';
+import { StorageKeys, StorageService, storage } from './storage.service';
+import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export class ApiService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private storageService: StorageService, private router: Router) {}
 
   public login(
     credentials: LoginCredentials
@@ -33,8 +35,34 @@ export class ApiService {
       );
   }
 
+  public refreshAccessToken(): Observable<BaseResponse> {
+    return this.http
+      .post<BaseResponse>(
+        `${this.GetApiUrl()}/auth/refresh-token`,
+        {
+          userId: this.storageService.getUser().id,
+          refreshToken: this.storageService.getRefreshToken()
+        },
+        {
+          headers: this.GetNonAuthenticationHeaders(),
+        }
+      )
+      .pipe(
+        map((response: BaseResponse) => {
+          if (!response.isSuccess) {
+            throw new Error(response.message);
+          }
+          return response;
+        })
+      );
+  }
+
+
   public logout() {
-    localStorage.removeItem('token');
+    this.storageService.removeAccessToken();
+    this.storageService.removeRefreshToken();
+    this.storageService.removeUser();
+    this.router.navigate(["/login"])
   }
 
   public register(credentials: RegisterCredentials): Observable<BaseResponse> {
@@ -229,15 +257,13 @@ export class ApiService {
   private GetAuthenticationHeaders(): HttpHeaders {
     return new HttpHeaders({
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      Authorization: `Bearer ${localStorage.getItem('token')}`,
+      Authorization: `Bearer ${storage.getItem(StorageKeys.ACCESS_TOKEN)}`,
     });
   }
 
   private GetNonAuthenticationHeaders(): HttpHeaders {
     return new HttpHeaders({
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
     });
   }
 

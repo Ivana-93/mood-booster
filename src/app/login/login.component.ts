@@ -2,16 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
 import {
-  BaseResponse,
   ErrorResponse,
   SingleResponse,
 } from '../model/responses.model';
-import { User } from '../model/user.model';
 import { LoginResponse } from '../model/Auth/login-response.model';
-import { Message } from 'primeng/api';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LoginCredentials } from '../model/Auth/login-credentials.model';
 import { StorageService } from '../storage.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'login',
@@ -26,12 +24,16 @@ export class LoginComponent implements OnInit {
     return this.loginForm.get('password');
   }
 
-  constructor(private router: Router, private authService: ApiService, private storageService: StorageService) {}
+  constructor(
+    private router: Router,
+    private authService: ApiService,
+    private storageService: StorageService,
+    private messageService: MessageService
+  ) {}
 
   loginForm: FormGroup;
   isLoading: boolean = false;
-  overlayVisible: boolean = false;
-  
+
   ngOnInit(): void {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -49,35 +51,29 @@ export class LoginComponent implements OnInit {
 
   private login(credentials: LoginCredentials): void {
     this.isLoading = true;
-    this.authService.login(credentials).subscribe(
-      //success
-      (responseData: SingleResponse<LoginResponse>) =>
-        this.handleSuccess(responseData),
-      //error
-      (error: Error) => this.handleError(error)
-    );
+    this.authService.login(credentials).subscribe({
+      next: this.handleLoginSuccess.bind(this),
+      error: this.handleLoginError.bind(this),
+    });
   }
 
-  private finishLoginRequest() {
-    this.isLoading = false;
-  }
-
-  handleSuccess(responseData: SingleResponse<LoginResponse>): void {
-    this.storageService.setToken(responseData.data.token);
+  handleLoginSuccess(responseData: SingleResponse<LoginResponse>): void {
+    this.storageService.setAccessToken(responseData.data.token);
+    this.storageService.setRefreshToken(responseData.data.refreshToken);
     this.storageService.setUser(responseData.data.user);
     this.router.navigate(['/']);
   }
 
-  handleError(error: Error): void {
+  handleLoginError(error: ErrorResponse): void {
     console.log('Fail', error.message);
-    this.finishLoginRequest();
+    if (error.status = 401){
+      this.messageService.add(
+        { severity: 'error', summary: 'Wrong email or password', detail: 'Try to login again' })
+    }
+    this.isLoading = false;
   }
 
-  public validateEmail(): void {
-    this.overlayVisible = !this.email.valid && this.email.touched;
+  onRegister(){
+    this.router.navigate(['/register']);
   }
-
-
 }
-
-

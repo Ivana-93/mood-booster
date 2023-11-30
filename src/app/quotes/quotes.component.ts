@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { Router } from '@angular/router';
 import { QuoteData } from '../model/quote.model';
-import { SingleResponse } from '../model/responses.model';
+import { ListResponse, SingleResponse } from '../model/responses.model';
 
 @Component({
   selector: 'quotes',
@@ -18,7 +18,8 @@ export class QuotesComponent implements OnInit{
   quotes: QuoteData[] = [];
 
   ngOnInit(){
-    this.getQuotes();
+      this.getQuotes();
+        
   }
 
   onGetQuote() {
@@ -57,8 +58,8 @@ export class QuotesComponent implements OnInit{
     })
   }
 
-  handleGetQuotesSuccess(response: SingleResponse<QuoteData[]>){
-    this.quotes = response.data
+  handleGetQuotesSuccess(response: ListResponse<QuoteData>){
+    this.quotes = response.data.reverse()
     }
   }
 

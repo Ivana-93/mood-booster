@@ -22,14 +22,14 @@ export class ActivityComponent {
     this.clickCount++;
     this.apiService.getRandomActivity().subscribe(
       {
-        next: this.handleActivitySucces.bind(this),
+        next: this.handleActivitySuccess.bind(this),
         error: this.handleError.bind(this),
       }
     )
     
     }
 
-    handleActivitySucces(responseData: SingleResponse<Activity>): void {  
+    handleActivitySuccess(responseData: SingleResponse<Activity>): void {  
         this.activity = responseData.data.content
         this.isLoading = false;
         if (this.clickCount > 1) {

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS  } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -23,6 +23,10 @@ import { StorageService } from './storage.service';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { MainLayoutModule } from './main-layout/main-layout.module';
+import { AuthenticationInterceptor } from './interceptors/auth.interceptor';
+import { ToastModule } from 'primeng/toast';
+import { ConfirmationService, MessageService } from 'primeng/api';
+
 
 
 @NgModule({
@@ -51,10 +55,15 @@ import { MainLayoutModule } from './main-layout/main-layout.module';
     TabMenuModule,
     RadioButtonModule,
     MainLayoutModule,
+    ToastModule
    
   ],
   exports: [ButtonModule, DropdownModule, OverlayPanelModule, MessagesModule],
-  providers: [ApiService, ButtonDirective, StorageService],
+  providers: [ApiService, ButtonDirective, StorageService, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthenticationInterceptor,
+    multi: true,
+  }, MessageService, ConfirmationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

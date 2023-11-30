@@ -3,36 +3,39 @@
     <div class="container col-md-6 col-sm-12">
       <form [formGroup]="loginForm" class="form-login" (ngSubmit)="onLogin()">
         <div class="form-group">
-          <label class="w-6rem" for="email">Email</label>
+          <label>Email</label>
           <input
-            (blur)="validateEmail()"
             type="text"
             pInputText
             formControlName="email"
-            class="p-inputtext-sm"
             id="email"
             name="email"
             placeholder="Enter your email"
+            class="ng-touched ng-invalid"
           />
+          <div *ngIf="email.invalid && email.touched">
+            <p-message severity="error" text="Please enter a valid email.">
+            </p-message>
+          </div>
         </div>
-        <div *ngIf="email.invalid && email.touched" class="error-message">
-          Hi! Please enter a valid email.
-        </div>
+
         <div class="form-group">
-          <label class="w-6rem" for="password">Password</label>
+          <label>Password</label>
           <input
             type="password"
             pInputText
             formControlName="password"
-            class="p-inputtext-sm"
+            class="ng-touched ng-invalid"
             id="password"
             name="password"
             placeholder="Enter password"
           />
-          <div *ngIf="password.invalid && password.touched" class="error-message">
-            Password is not correct.
+          <div *ngIf="password.invalid && password.touched">
+            <p-message severity="error" text="Password is not correct.">
+            </p-message>
           </div>
         </div>
+        <p-toast position="top-center"></p-toast>
         <p-button
           class="login-button"
           type="submit"
@@ -45,33 +48,29 @@
       </form>
     </div>
     <div class="divider col-md-1 col-sm-12">
-        <p-divider
-          layout="vertical"
-          styleClass="d-sm-none:hidden"
-          class="d-sm-none d-xs-none d-md-block d-lg-block"
-        >
-          <b>OR</b></p-divider
-        >
-        <p-divider
-          class="d-sm-block d-xs-block d-md-none d-lg-none"
-          layout="horizontal"
-          styleClass="d-md-none:hidden"
-          [align]="'center'"
-        >
-          <b>OR</b></p-divider
-        >
+      <p-divider
+        layout="vertical"
+        class="d-none d-md-block"
+      >
+        <b>OR</b></p-divider
+      >
+      <p-divider
+        class="d-block d-md-none"
+        layout="horizontal"
+        [align]="'center'"
+      >
+        <b>OR</b></p-divider
+      >
     </div>
-    <div
-      class="container col-md-5 col-sm-12">
+    <div class="container col-md-5 col-sm-12">
       <p-button
+      (click)="onRegister()"
         class="register-button"
         type="submit"
         label="Register"
         icon="pi pi-user"
         [rounded]="true"
-        
       ></p-button>
     </div>
-</div>
-
+  </div>
 </div>

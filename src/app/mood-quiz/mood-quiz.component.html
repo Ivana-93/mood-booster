@@ -13,7 +13,8 @@
       *ngIf="!(!isLoading && questions!)"
     >
     </p-button>
-    <div *ngIf="questions && !isFinished">
+    <p-dialog [(visible)]="visible" [modal]="true">
+    <div class="questions" *ngIf="questions && !isFinished">
       <div *ngFor="let question of questions.questionList; let i = index">
         <question
           *ngIf="currentQuestion === i + 1"
@@ -22,25 +23,29 @@
           (selectedAnswer)="handleAnswerSelected(question, $event)"
         ></question>
       </div>
-      <button
+      <br>
+      <p-button
         *ngIf="currentQuestion < questions.questionList.length"
+        [disabled]="!isClicked"
+        label="NEXT QUESTION"
+        [rounded]="true"
         (click)="nextQuestion()"
       >
-        Next Question
-      </button>
-      <button
+      </p-button>
+      <p-button
         *ngIf="currentQuestion == questions.questionList.length"
         (click)="showResult()"
+        label="FIND OUT RESULT"
+        [rounded]="true"
       >
-        Find out your result
-      </button>
+      </p-button>
     </div>
-    <div *ngIf="isFinished">
+    <div class="result" *ngIf="isFinished">
       <h3>{{ moodType }}</h3>
       <p>{{ moodText }}</p>
       <br />
       <h4>Do you want to save your result in mood history calendar?</h4>
-      <p-button
+      <div class="buttons"><p-button
         (click)="saveMood()"
         class="quiz-button"
         type="button"
@@ -53,6 +58,7 @@
         type="button"
         label="NO"
         [rounded]="true"
-      ></p-button>
+      ></p-button></div>
     </div>
+  </p-dialog>
   </p-card>

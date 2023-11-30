@@ -23,19 +23,6 @@
     
 }
 
-.error-message {
-    display: flex;
-    flex-direction: column;
-    justify-content: center; 
-    flex-wrap: nowrap;
-    align-content: center;
-    align-items: center;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 6rem;
-
-}
-
 .form-group {
     display: flex;
     align-items: center;

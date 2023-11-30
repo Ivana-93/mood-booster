@@ -7,88 +7,93 @@
       (ngSubmit)="onRegister()"
     >
       <div class="form-group">
-        <label class="w-6rem" for="email">Email</label>
+        <label>Email</label>
         <input
           type="text"
           pInputText
           formControlName="email"
-          class="p-inputtext-sm"
+          class="p-inputtext-sm ng-touched ng-invalid"
           id="email"
           name="email"
-          placeholder="Enter your email."
         />
       </div>
-      <div *ngIf="email.invalid && email.touched" class="error-message">
-        Hi! Please enter a valid email.
+      <div *ngIf="email.invalid && email.touched">
+        <p-message severity="error" text="Please enter a valid email.">
+        </p-message>
       </div>
       <div class="form-group">
-        <label class="w-6rem" for="password">Password</label>
+        <label>Password</label>
         <input
           type="password"
           pInputText
           formControlName="password"
-          class="p-inputtext-sm"
+          class="p-inputtext-sm ng-touched ng-invalid"
           id="password"
           name="password"
-          placeholder="Enter password"
         />
       </div>
-      <div *ngIf="password.invalid && password.touched" class="error-message">
-        Password needs to be at least 8 characters long.
+      <div *ngIf="password.invalid && password.touched">
+        <p-message severity="error" text="Password is not correct.">
+        </p-message>
+      </div>
+      <div *ngIf="password.touched && password.value.length < 8">
+        <p-message severity="error" text="Password has to have minimun 8 characters.">
+        </p-message>
       </div>
       <div class="form-group">
-        <label class="w-6rem" for="confirmPassword">Confirm Password</label>
+        <label>Confirm Password</label>
         <input
           type="password"
           pInputText
           formControlName="confirmPassword"
-          class="p-inputtext-sm"
+          class="p-inputtext-sm ng-touched ng-invalid"
           id="confirmPassword"
           name="confirmPassword"
-          placeholder="Confirm Password"
         />
       </div>
-      <div *ngIf="passwordsDoNotMatch" class="error-message">
-        Passwords do not match.
+      <div *ngIf="passwordsDoNotMatch">
+        <p-message severity="error" text="Passwords do not match.">
+        </p-message>
       </div>
 
       <br />
 
       <div class="form-group">
-        <label class="w-6rem" for="firstName">First name</label>
+        <label>First name</label>
         <input
           type="firstName"
           pInputText
           formControlName="firstName"
-          class="p-inputtext-sm"
+          class="p-inputtext-sm ng-touched ng-invalid"
           id="firstName"
           name="firstName"
-          placeholder="Enter your first name."
         />
       </div>
-      <div *ngIf="firstName.touched" class="error-message">
-        Please enter your first name.
+      <div *ngIf="firstName.touched && !firstName.value">
+        <p-message severity="error" text="Please enter your first name.">
+        </p-message>
       </div>
 
       <div class="form-group">
-        <label class="w-6rem" for="lastName">Last Name</label>
+        <label>Last Name</label>
         <input
           type="lastName"
           pInputText
           formControlName="lastName"
-          class="p-inputtext-sm"
+          class="p-inputtext-sm ng-touched ng-invalid"
           id="lastName"
           name="lastName"
-          placeholder="Enter your last name."
         />
       </div>
-      <div *ngIf="lastName.touched" class="error-message">
-        Please enter your last name.
+      <div *ngIf="lastName.touched && !lastName.value">
+        <p-message severity="error" text="Please enter your last name.">
+        </p-message>
       </div>
 
       <br />
       <div class="confirm">
         <p-button
+        (click)="onRegister()"
           class="register-button"
           type="submit"
           label="Register"

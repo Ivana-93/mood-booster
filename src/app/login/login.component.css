@@ -3,7 +3,6 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  align-content: center;
   justify-content: center;
   align-items: center;
 }
@@ -12,8 +11,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  flex-wrap: nowrap;
-  align-content: center;
+  flex-wrap: wrap;
   align-items: center;
   margin-left: auto;
   margin-right: auto;
@@ -21,7 +19,8 @@
 
 .form-group {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: center;
   margin: 10px;
   gap: 20px;
 }
@@ -29,6 +28,7 @@
 .form-group label {
   width: 100px;
   align-self: center;
+  text-align: center;
 }
 
 .form-group input {
@@ -58,8 +58,4 @@
   margin: auto;
 }
 
-.error-message {
-    font-size: 12px;
-    margin: 0;
-    padding: 0;
-}
+

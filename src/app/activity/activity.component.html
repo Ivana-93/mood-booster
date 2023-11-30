@@ -1,14 +1,12 @@
-<div class="container">
-  <p-card class="card" header="Are You Bored?">
-    <p-button
-      *ngIf="!isLoading"
-      (click)="getRandomActivity()"
-      class="activity-button"
-      type="button"
-      [rounded]="true"
-      [loading]="isLoading"
-      >{{ buttonLabel }}</p-button
-    >
-    <p>{{ activity }}</p>
-  </p-card>
-</div>
+<p-card class="card" header="Are You Bored?">
+  <p-button
+    *ngIf="!isLoading"
+    (click)="getRandomActivity()"
+    class="activity-button"
+    type="button"
+    [rounded]="true"
+    [loading]="isLoading"
+    >{{ buttonLabel }}</p-button
+  >
+  <p>{{ activity }}</p>
+</p-card>

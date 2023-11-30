@@ -1,9 +1,12 @@
-:host ::ng-deep.p-card {
-    justify-content: center;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-content: center;
-    align-items: center;
-    text-align: center;
+
+.quiz-question{
+    display: inline-flex;
+    vertical-align: middle !important;
+    padding: 1%;
+    
 }
+
+.field-checkbox{
+    line-height: 2;
+}
+

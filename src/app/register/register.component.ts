@@ -58,7 +58,7 @@ export class RegisterComponent {
       this.handleError(new Error('Passwords do not match'));
       return;
     }
-    this.register(registerCredentials);
+    this.register(registerCredentials); 
   }
 
   register(regCredentials: RegisterCredentials) {
@@ -68,17 +68,15 @@ export class RegisterComponent {
       error: this.handleError.bind(this),
     });
     this.isLoading = false;
+    this.router.navigate(['/login'])
   }
 
   handleSuccess(responseData: BaseResponse): void {
-    this.finishRegisterRequest();
+    this.isLoading = false;
   }
 
   handleError(error: Error): void {
-    this.finishRegisterRequest();
-  }
-
-  private finishRegisterRequest() {
     this.isLoading = false;
   }
+
 }

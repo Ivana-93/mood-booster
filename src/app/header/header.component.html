@@ -9,12 +9,7 @@
       <p-tabPanel header="Your Diary" leftIcon="pi pi-book"></p-tabPanel>
     </p-tabView>
   </div>
-  <!-- nemoj se ljutiti, samo sam ubacio dva wrapper diva, 
-    koji oznacavaju lijevu i desnu stranu cijelog  headera 
-    i onda sam nakacio overlay na desnu stranu.
-    same klase left i right nista ne rade nego samo sluze kao opis sto taj div radi. 
-    Predlazem da to ne izbrises jer onda mozes lako applyat
-    nekakve stilove samo na lijevu ili samo na desnu stranu" -->
+  
   <div #anchor class="right">
     <p-tabView 
     [(activeIndex)]="overlayIndex"
@@ -31,11 +26,12 @@
     <p>{{ userInfo }}</p>
     <p-button
       *ngIf="isLoggedin"
-      (onClick)="logout()"
+      (click)="logout($event)"
       label="Logout"
       icon="pi pi-sign-out"
       [rounded]="true"
       styleClass="p-button-text"
     ></p-button>
+    <p-confirmPopup></p-confirmPopup>
   </div>
 </p-overlayPanel>
