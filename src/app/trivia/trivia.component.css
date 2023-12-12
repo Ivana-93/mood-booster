@@ -1,0 +1,42 @@
+:host ::ng-deep .trivia .p-card.p-component{
+    height: 80vh;  
+    display: flex;
+    justify-content: center;
+    margin-right: 10%;
+    border-radius: 25px;
+}
+
+.trivia-quiz {
+    display: flex;
+    justify-content: center;
+}
+
+.questions{
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    color: #03213A;
+    background-color: #F8B4D8;
+    border-radius: 25px;
+    height: 60vh;
+    width: 40vw;
+}
+
+.trivia-image {
+    height: 90%;
+    width: 80%;
+    margin-left: 10%
+}
+
+h3 {
+   color: #677988;
+}
+
+.result {
+    display: flex;
+    flex-direction: column;
+    text-align:  center;
+}

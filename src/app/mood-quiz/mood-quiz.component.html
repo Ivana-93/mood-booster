@@ -1,6 +1,6 @@
 <p-card 
     class="card"
-    [header]="questions ? '' : 'How Are You Feeling?'"
+    [header]="'How Are You Feeling?'"
     subheader="Check your mood!"
   >
     <p-button
@@ -10,7 +10,7 @@
       label="START QUIZ"
       [rounded]="true"
       [loading]="isLoading"
-      *ngIf="!(!isLoading && questions!)"
+      *ngIf="!(!isLoading && questions && visible)"
     >
     </p-button>
     <p-dialog [(visible)]="visible" [modal]="true">

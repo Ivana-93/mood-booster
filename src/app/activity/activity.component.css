@@ -1,0 +1,11 @@
+:host ::ng-deep .activity .p-card .p-card-content {
+  padding: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+
+

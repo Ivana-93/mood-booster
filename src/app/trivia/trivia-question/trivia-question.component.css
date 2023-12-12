@@ -1,0 +1,10 @@
+.trivia-button{
+    display: inline-flex;
+    vertical-align: middle !important;
+    padding: 1%;
+    
+}
+
+.field-checkbox{
+    line-height: 2;
+}

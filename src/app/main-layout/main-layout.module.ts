@@ -36,6 +36,8 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DialogModule } from 'primeng/dialog';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { ToastModule } from 'primeng/toast';
+import { MenuModule } from 'primeng/menu';
+
 
 
 @NgModule({
@@ -79,7 +81,8 @@ MainLayoutComponent,
     ConfirmDialogModule,
     DialogModule,
     ConfirmPopupModule,
-    ToastModule
+    ToastModule,
+    MenuModule
 
   ],
   exports:[

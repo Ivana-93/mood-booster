@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row w-100">
-    <div class="container col-md-6 col-sm-12">
+    <div class="container form col-md-6 col-sm-12">
       <form [formGroup]="loginForm" class="form-login" (ngSubmit)="onLogin()">
         <div class="form-group">
           <label>Email</label>
@@ -11,7 +11,9 @@
             id="email"
             name="email"
             placeholder="Enter your email"
+            maxlength="50"
             class="ng-touched ng-invalid"
+            autocomplete="email"
           />
           <div *ngIf="email.invalid && email.touched">
             <p-message severity="error" text="Please enter a valid email.">
@@ -29,6 +31,8 @@
             id="password"
             name="password"
             placeholder="Enter password"
+            maxlength="50"
+            autocomplete="current-password"
           />
           <div *ngIf="password.invalid && password.touched">
             <p-message severity="error" text="Password is not correct.">
@@ -48,10 +52,7 @@
       </form>
     </div>
     <div class="divider col-md-1 col-sm-12">
-      <p-divider
-        layout="vertical"
-        class="d-none d-md-block"
-      >
+      <p-divider layout="vertical" class="d-none d-md-block">
         <b>OR</b></p-divider
       >
       <p-divider
@@ -62,11 +63,11 @@
         <b>OR</b></p-divider
       >
     </div>
-    <div class="container col-md-5 col-sm-12">
+    <div class="container form col-md-5 col-sm-12">
       <p-button
-      (click)="onRegister()"
+        (click)="onRegister()"
         class="register-button"
-        type="submit"
+        type="button"
         label="Register"
         icon="pi pi-user"
         [rounded]="true"

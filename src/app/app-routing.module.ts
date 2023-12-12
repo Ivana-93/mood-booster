@@ -7,6 +7,7 @@ import { canActivateGuard } from './auth-guard.service';
 import { MoodHistoryComponent } from './mood-history/mood-history.component';
 import { DiaryComponent } from './diary/diary.component';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
+import { TriviaComponent } from './trivia/trivia.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -26,11 +27,18 @@ const routes: Routes = [
         canActivate: [canActivateGuard],
       },
       {
+        path: 'trivia',
+        component: TriviaComponent,
+        canActivate: [canActivateGuard],
+      },
+      {
         path: 'home',
         component: HomeComponent,
         canActivate: [canActivateGuard],
       },
+      
       { path: '**', component: HomeComponent, canActivate: [canActivateGuard] },
+
     ],
     canActivate: [canActivateGuard],
   },

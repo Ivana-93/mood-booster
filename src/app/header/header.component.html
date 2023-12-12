@@ -1,4 +1,4 @@
-<div #header class="header" >
+<div #header class="header" *ngIf="!isMobile; else mobileHeader">
   <div class="left">
     <p-tabView (onChange)="navigateTo($event)">
       <p-tabPanel header="Home" leftIcon="pi pi-home" [disabled]="false">
@@ -9,19 +9,19 @@
       <p-tabPanel header="Your Diary" leftIcon="pi pi-book"></p-tabPanel>
     </p-tabView>
   </div>
-  
+
   <div #anchor class="right">
-    <p-tabView 
-    [(activeIndex)]="overlayIndex"
-    (onChange)="toggleOverlay($event, op, anchor)"
-  >
-    <p-tabPanel header="Account" leftIcon="pi pi-user"> </p-tabPanel>
-    <p-tabPanel headerStyleClass="d-none"> </p-tabPanel>
-  </p-tabView>
+    <p-tabView
+      [(activeIndex)]="overlayIndex"
+      (onChange)="toggleOverlay($event, op, anchor)"
+    >
+      <p-tabPanel header="Account" leftIcon="pi pi-user"> </p-tabPanel>
+      <p-tabPanel headerStyleClass="d-none"> </p-tabPanel>
+    </p-tabView>
   </div>
 </div>
 
-<p-overlayPanel styleClass="position"  #op (onHide)="handleOnHide()">
+<p-overlayPanel styleClass="position" #op (onHide)="handleOnHide()">
   <div class="vertical-layout">
     <p>{{ userInfo }}</p>
     <p-button
@@ -35,3 +35,16 @@
     <p-confirmPopup></p-confirmPopup>
   </div>
 </p-overlayPanel>
+
+<ng-template #mobileHeader>
+  <div class="card flex justify-content-center">
+    <p-toast></p-toast>
+    <p-menu #menu [model]="items" [popup]="true"></p-menu>
+    <button
+      pButton
+      type="button"
+      (click)="menu.toggle($event)"
+      icon="pi pi-bars"
+    ></button>
+  </div>
+</ng-template>

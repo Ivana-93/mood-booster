@@ -4,7 +4,7 @@ import { User } from '../model/user.model';
 import { StorageService } from '../storage.service';
 import { TabViewChangeEvent } from 'primeng/tabview';
 import { OverlayPanel } from 'primeng/overlaypanel';
-import { ConfirmationService} from 'primeng/api';
+import { ConfirmationService, MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'header',
@@ -12,19 +12,59 @@ import { ConfirmationService} from 'primeng/api';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
+  isMobile: boolean;
+  items: MenuItem[];
   isLoggedin = true;
   private user: User;
   public userInfo: string;
-
   public overlayIndex: number = 1;
 
   constructor(
     private router: Router,
     private storageService: StorageService,
-    private confirmationService: ConfirmationService,
+    private confirmationService: ConfirmationService
   ) {}
 
   ngOnInit() {
+    this.checkScreenSize();
+    window.addEventListener('resize', () => this.checkScreenSize());
+    this.items = [
+      {
+        label: 'Home',
+        icon: 'pi pi-home',
+        command: () => {
+          this.navigateToHome();
+        },
+      },
+      {
+        label: 'Game Quiz',
+        icon: 'pi pi-question-circle',
+        command: () => {
+          this.navigateToQuiz();
+        },
+      },
+      {
+        label: 'Mood History',
+        icon: 'pi pi-calendar',
+        command: () => {
+          this.navigateToMoodHistory();
+        },
+      },
+      {
+        label: 'Your Diary',
+        icon: 'pi pi-book',
+        command: () => {
+          this.navigateToDiary();
+        },
+      },
+      {
+        label: 'Account',
+        icon: 'pi pi-user',
+        command: () => {
+          this.logout(null);
+        },
+      },
+    ];
     if (this.storageService.getAccessToken() === null) {
       this.isLoggedin = false;
     }
@@ -33,6 +73,10 @@ export class HeaderComponent {
       this.isLoggedin = false;
     }
     this.userInfo = `${this.user.firstName} ${this.user.lastName}`;
+  }
+
+  checkScreenSize() {
+    this.isMobile = window.innerWidth < 768;
   }
 
   navigateTo(event: TabViewChangeEvent) {
@@ -74,7 +118,7 @@ export class HeaderComponent {
   }
 
   navigateToQuiz() {
-    this.router.navigate(['/quiz']);
+    this.router.navigate(['/trivia']);
   }
 
   navigateToMoodHistory() {
@@ -86,6 +130,13 @@ export class HeaderComponent {
   }
 
   logout(event: Event) {
+    if (event == null) {
+      if (confirm('Are you sure you want to logout?')) {
+        this.storageService.removeAccessToken();
+        this.storageService.removeUser();
+        this.router.navigate(['/login']);
+      }
+    }
     this.confirmationService.confirm({
       target: event.target as EventTarget,
       message: 'Are you sure you want to logout?',
@@ -97,6 +148,5 @@ export class HeaderComponent {
       },
       reject: () => {},
     });
-    
   }
 }

@@ -1,11 +1,7 @@
 <div class="container col-md-6 col-sm-3 col-lg-4">
-  <p-card class="card" header="Register"
-    >
-    <form
-      [formGroup]="registerForm"
-      class="register"
-      (ngSubmit)="onRegister()"
-    >
+  <p-card class="card" header="Register">
+    <form [formGroup]="registerForm" class="register" (ngSubmit)="onRegister()">
+      
       <div class="form-group">
         <label>Email</label>
         <input
@@ -15,12 +11,18 @@
           class="p-inputtext-sm ng-touched ng-invalid"
           id="email"
           name="email"
+          maxlength="50"
+          autocomplete="email"
         />
       </div>
       <div *ngIf="email.invalid && email.touched">
-        <p-message severity="error" text="Please enter a valid email.">
+        <p-message
+          severity="error"
+          text="Please enter a valid email. For example: test@test.com"
+        >
         </p-message>
       </div>
+      
       <div class="form-group">
         <label>Password</label>
         <input
@@ -30,16 +32,22 @@
           class="p-inputtext-sm ng-touched ng-invalid"
           id="password"
           name="password"
+          maxlength="50"
+          autocomplete="current-password"
         />
       </div>
       <div *ngIf="password.invalid && password.touched">
-        <p-message severity="error" text="Password is not correct.">
+        <p-message severity="error" text="You need to enter a password.">
         </p-message>
       </div>
       <div *ngIf="password.touched && password.value.length < 8">
-        <p-message severity="error" text="Password has to have minimun 8 characters.">
+        <p-message
+          severity="error"
+          text="Password has to have a minimum of 8 characters."
+        >
         </p-message>
       </div>
+      
       <div class="form-group">
         <label>Confirm Password</label>
         <input
@@ -49,15 +57,16 @@
           class="p-inputtext-sm ng-touched ng-invalid"
           id="confirmPassword"
           name="confirmPassword"
+          maxlength="50"
+          autocomplete="current-password"
         />
       </div>
       <div *ngIf="passwordsDoNotMatch">
-        <p-message severity="error" text="Passwords do not match.">
-        </p-message>
+        <p-message severity="error" text="Passwords do not match."> </p-message>
       </div>
 
       <br />
-
+      
       <div class="form-group">
         <label>First name</label>
         <input
@@ -67,6 +76,8 @@
           class="p-inputtext-sm ng-touched ng-invalid"
           id="firstName"
           name="firstName"
+          maxlength="50"
+          autocomplete="username"
         />
       </div>
       <div *ngIf="firstName.touched && !firstName.value">
@@ -83,6 +94,8 @@
           class="p-inputtext-sm ng-touched ng-invalid"
           id="lastName"
           name="lastName"
+          maxlength="50"
+          autocomplete="family-name"
         />
       </div>
       <div *ngIf="lastName.touched && !lastName.value">
@@ -91,18 +104,28 @@
       </div>
 
       <br />
+
       <div class="confirm">
         <p-button
-        (click)="onRegister()"
+          (click)="onRegister()"
           class="register-button"
-          type="submit"
+          type="button"
           label="Register"
           icon="pi pi-key"
           [rounded]="true"
           [disabled]="!registerForm.valid"
           [loading]="isLoading"
         ></p-button>
+        <div *ngIf="registrationFailed == true">
+          <p-message
+            severity="error"
+            text="Something went wrong! Please try to register again."
+          >
+          </p-message>
+        </div>
+
         <br />
+        
         <div><a [routerLink]="'/login'">Return to login</a></div>
       </div>
     </form>

@@ -19,10 +19,10 @@ export class ApiService {
   ): Observable<SingleResponse<LoginResponse>> {
     return this.http
       .post<SingleResponse<LoginResponse>>(
-        `${this.GetApiUrl()}/auth/login`,
+        `${this.getApiUrl()}/auth/login`,
         credentials,
         {
-          headers: this.GetNonAuthenticationHeaders(),
+          headers: this.getNonAuthenticationHeaders(),
         }
       )
       .pipe(
@@ -38,13 +38,13 @@ export class ApiService {
   public refreshAccessToken(): Observable<BaseResponse> {
     return this.http
       .post<BaseResponse>(
-        `${this.GetApiUrl()}/auth/refresh-token`,
+        `${this.getApiUrl()}/auth/refresh-token`,
         {
           userId: this.storageService.getUser().id,
           refreshToken: this.storageService.getRefreshToken()
         },
         {
-          headers: this.GetNonAuthenticationHeaders(),
+          headers: this.getNonAuthenticationHeaders(),
         }
       )
       .pipe(
@@ -68,10 +68,10 @@ export class ApiService {
   public register(credentials: RegisterCredentials): Observable<BaseResponse> {
     return this.http
       .post<BaseResponse>(
-        `${this.GetApiUrl()}/auth/registration`,
+        `${this.getApiUrl()}/auth/registration`,
         credentials,
         {
-          headers: this.GetNonAuthenticationHeaders(),
+          headers: this.getNonAuthenticationHeaders(),
         }
       )
       .pipe(
@@ -86,8 +86,8 @@ export class ApiService {
 
   public getJoke(): Observable<BaseResponse> {
     return this.http
-      .get<BaseResponse>(`${this.GetApiUrl()}/joke`, {
-        headers: this.GetAuthenticationHeaders(),
+      .get<BaseResponse>(`${this.getApiUrl()}/joke`, {
+        headers: this.getAuthenticationHeaders(),
       })
       .pipe(
         map((response: BaseResponse) => {
@@ -101,8 +101,8 @@ export class ApiService {
 
   public getQuotes(): Observable<BaseResponse> {
     return this.http
-      .get<BaseResponse>(`${this.GetApiUrl()}/quote`, {
-        headers: this.GetAuthenticationHeaders(),
+      .get<BaseResponse>(`${this.getApiUrl()}/quote`, {
+        headers: this.getAuthenticationHeaders(),
       })
       .pipe(
         map((response: BaseResponse) => {
@@ -116,8 +116,8 @@ export class ApiService {
 
   public getQuestions(): Observable<BaseResponse> {
     return this.http
-      .get<BaseResponse>(`${this.GetApiUrl()}/questions`, {
-        headers: this.GetAuthenticationHeaders(),
+      .get<BaseResponse>(`${this.getApiUrl()}/questions`, {
+        headers: this.getAuthenticationHeaders(),
       })
       .pipe(
         map((response: BaseResponse) => {
@@ -131,8 +131,8 @@ export class ApiService {
 
   public getRandomActivity(): Observable<BaseResponse> {
     return this.http
-      .get<BaseResponse>(`${this.GetApiUrl()}/activity`, {
-        headers: this.GetAuthenticationHeaders(),
+      .get<BaseResponse>(`${this.getApiUrl()}/activity`, {
+        headers: this.getAuthenticationHeaders(),
       })
       .pipe(
         map((response: BaseResponse) => {
@@ -147,12 +147,12 @@ export class ApiService {
   public postMoodQuizResult(pointCount: number): Observable<BaseResponse> {
     return this.http
       .post<BaseResponse>(
-        `${this.GetApiUrl()}/moodresult`,
+        `${this.getApiUrl()}/moodresult`,
         {
           pointCount,
         },
         {
-          headers: this.GetAuthenticationHeaders(),
+          headers: this.getAuthenticationHeaders(),
         }
       )
       .pipe(
@@ -168,12 +168,12 @@ export class ApiService {
   public updateMoodHistoryData(moodType: string): Observable<BaseResponse> {
     return this.http
       .post<BaseResponse>(
-        `${this.GetApiUrl()}/moodhistory`,
+        `${this.getApiUrl()}/moodhistory`,
         {
           moodType,
         },
         {
-          headers: this.GetAuthenticationHeaders(),
+          headers: this.getAuthenticationHeaders(),
         }
       )
       .pipe(
@@ -188,8 +188,8 @@ export class ApiService {
 
   public getMoodCalendar(): Observable<BaseResponse> {
     return this.http
-      .get<BaseResponse>(`${this.GetApiUrl()}/moodcalendar`, {
-        headers: this.GetAuthenticationHeaders(),
+      .get<BaseResponse>(`${this.getApiUrl()}/moodcalendar`, {
+        headers: this.getAuthenticationHeaders(),
       })
       .pipe(
         map((response: BaseResponse) => {
@@ -204,14 +204,14 @@ export class ApiService {
   public updateDiary(value: string): Observable<BaseResponse> {
     return this.http
       .post<BaseResponse>(
-        `${this.GetApiUrl()}/newdiaryentry`,
+        `${this.getApiUrl()}/newdiaryentry`,
         {
-          //ovdje je text jer je property na backendu tog objekta naziva text
-          // value je ono čija se vrijednost dodjeljuje na property text
+          //'text' is the property name on the backend of that object
+          // 'value' is what gets assigned to the 'text' property
           text: value,
         },
         {
-          headers: this.GetAuthenticationHeaders(),
+          headers: this.getAuthenticationHeaders(),
         }
       )
       .pipe(
@@ -226,8 +226,8 @@ export class ApiService {
 
   public getDiaryEntries(): Observable<BaseResponse> {
     return this.http
-      .get<BaseResponse>(`${this.GetApiUrl()}/diaryentry`, {
-        headers: this.GetAuthenticationHeaders(),
+      .get<BaseResponse>(`${this.getApiUrl()}/diaryentry`, {
+        headers: this.getAuthenticationHeaders(),
       })
       .pipe(
         map((response: BaseResponse) => {
@@ -241,8 +241,8 @@ export class ApiService {
 
   public getUserQuotes(): Observable<BaseResponse> {
     return this.http
-      .get<BaseResponse>(`${this.GetApiUrl()}/quotes`, {
-        headers: this.GetAuthenticationHeaders(),
+      .get<BaseResponse>(`${this.getApiUrl()}/quotes`, {
+        headers: this.getAuthenticationHeaders()
       })
       .pipe(
         map((response: BaseResponse) => {
@@ -254,20 +254,34 @@ export class ApiService {
       );
   }
 
-  private GetAuthenticationHeaders(): HttpHeaders {
+
+  public getTriviaQuestions(): Observable<BaseResponse> {
+    return this.http.get<BaseResponse>(`${this.getApiUrl()}/trivia`, {
+      headers: this.getNonAuthenticationHeaders()
+    }).pipe(
+      map((response:BaseResponse) => {
+        if (!response.isSuccess){
+          throw new Error(response.message);
+        }
+        return response;
+      })
+    );
+  }
+
+  private getAuthenticationHeaders(): HttpHeaders {
     return new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${storage.getItem(StorageKeys.ACCESS_TOKEN)}`,
     });
   }
 
-  private GetNonAuthenticationHeaders(): HttpHeaders {
+  private getNonAuthenticationHeaders(): HttpHeaders {
     return new HttpHeaders({
       'Content-Type': 'application/json',
     });
   }
 
-  private GetApiUrl(): string {
+  private getApiUrl(): string {
     if (isDevMode()) {
       return 'https://localhost:44386/api';
     } else {

@@ -7,6 +7,10 @@
   align-items: center;
 }
 
+.form {
+  height: 50vh;
+}
+
 .form-login {
   display: flex;
   flex-direction: column;

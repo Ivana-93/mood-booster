@@ -13,6 +13,7 @@ import { BaseResponse } from '../model/responses.model';
 export class RegisterComponent {
   registerForm: FormGroup;
   isLoading: boolean = false;
+  registrationFailed = false;
 
   get email() {
     return this.registerForm.get('email');
@@ -39,7 +40,12 @@ export class RegisterComponent {
 
   ngOnInit(): void {
     this.registerForm = new FormGroup({
-      email: new FormControl('', [Validators.required, Validators.email]),
+      email: new FormControl('', [
+        Validators.required,
+        Validators.pattern(
+          '^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,})$'
+        ),
+      ]),
       password: new FormControl('', Validators.required),
       confirmPassword: new FormControl('', Validators.required),
       firstName: new FormControl('', Validators.required),
@@ -54,29 +60,24 @@ export class RegisterComponent {
       this.firstName.value,
       this.lastName.value
     );
-    if (this.passwordsDoNotMatch) {
-      this.handleError(new Error('Passwords do not match'));
-      return;
-    }
-    this.register(registerCredentials); 
+    this.submitForm(registerCredentials);
   }
 
-  register(regCredentials: RegisterCredentials) {
+  submitForm(regCredentials: RegisterCredentials) {
     this.isLoading = true;
     this.authService.register(regCredentials).subscribe({
-      next: this.handleSuccess.bind(this),
-      error: this.handleError.bind(this),
+      next: this.handleRegisterSuccess.bind(this),
+      error: this.handleRegisterError.bind(this),
     });
-    this.isLoading = false;
-    this.router.navigate(['/login'])
   }
 
-  handleSuccess(responseData: BaseResponse): void {
+  handleRegisterSuccess(responseData: BaseResponse): void {
     this.isLoading = false;
+    this.router.navigate(['/login']);
   }
 
-  handleError(error: Error): void {
+  handleRegisterError(error: Error): void {
     this.isLoading = false;
+    this.registrationFailed = true;
   }
-
 }

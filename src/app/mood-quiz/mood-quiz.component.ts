@@ -39,6 +39,7 @@ export class MoodQuizComponent {
 
   private handleSuccess(responseData: SingleResponse<Questions>): void {
     this.questions = responseData.data;
+    console.log(this.questions)
     this.isLoading = false;
   }
 
@@ -69,7 +70,6 @@ export class MoodQuizComponent {
     this.moodText = responseData.data.moodText
     this.isLoading = false;
   }
-
 
   noSaveMood(){
     this.router.navigate(["/"])

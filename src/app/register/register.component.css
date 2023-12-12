@@ -6,8 +6,7 @@
     align-content: center;
     align-items: center;
     margin-left: auto;
-    margin-right: auto;
-    
+    margin-right: auto;  
 }
 
 .card {
@@ -20,7 +19,6 @@
     margin-left: auto;
     margin-right: auto;
     margin-top: 6rem;
-    
 }
 
 .form-group {
@@ -40,7 +38,6 @@
     align-items: center;
     margin-left: auto;
     margin-right: auto;
-    
 }
 
 .error-message {

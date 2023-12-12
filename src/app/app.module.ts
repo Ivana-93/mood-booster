@@ -26,7 +26,8 @@ import { MainLayoutModule } from './main-layout/main-layout.module';
 import { AuthenticationInterceptor } from './interceptors/auth.interceptor';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmationService, MessageService } from 'primeng/api';
-
+import { TriviaComponent } from './trivia/trivia.component';
+import { TriviaQuestionComponent } from './trivia/trivia-question/trivia-question.component';
 
 
 @NgModule({
@@ -34,6 +35,8 @@ import { ConfirmationService, MessageService } from 'primeng/api';
     AppComponent,
     LoginComponent,
     RegisterComponent,
+    TriviaComponent,
+    TriviaQuestionComponent,
     ],
 
   imports: [
@@ -55,7 +58,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
     TabMenuModule,
     RadioButtonModule,
     MainLayoutModule,
-    ToastModule
+    ToastModule,
    
   ],
   exports: [ButtonModule, DropdownModule, OverlayPanelModule, MessagesModule],
