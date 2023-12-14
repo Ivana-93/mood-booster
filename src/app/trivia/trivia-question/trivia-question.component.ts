@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { TriviaQuestion } from 'src/app/model/Trivia/questionTrivia.model';
 
 @Component({
@@ -20,6 +20,7 @@ export class TriviaQuestionComponent {
     this.shuffledAnswers = [];
   }
 
+  // Shuffle method
   shuffle<T>(array: T[]): T[] {
     const shuffledArray = [...array];
     shuffledArray.sort(() => Math.random() - 0.5);

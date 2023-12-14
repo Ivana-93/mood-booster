@@ -1,12 +1,16 @@
-<p-card class="card" header="Start Your Day With Laughter!" subheader="Find your JOKE OF THE DAY">
-    <p-button
-      (click)="onJokeOfTheDay()"
-      class="joke-button"
-      type="button"
-      label="SHOW JOKE"
-      [rounded]="true"
-      [loading]="isLoading"
-      *ngIf="!(!isLoading && joke !== '')"
-    ></p-button>
-    <p>{{ joke }}</p>
+<p-card
+  class="card"
+  header="Start Your Day With Laughter!"
+  subheader="Find your JOKE OF THE DAY"
+>
+  <p-button
+    (click)="onJokeOfTheDay()"
+    class="joke-button"
+    type="button"
+    label="SHOW JOKE"
+    [rounded]="true"
+    [loading]="isLoading"
+    *ngIf="!(!isLoading && joke !== '')"
+  ></p-button>
+  <p>{{ joke }}</p>
 </p-card>

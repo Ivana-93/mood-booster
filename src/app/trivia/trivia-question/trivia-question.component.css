@@ -1,10 +1,9 @@
-.trivia-button{
-    display: inline-flex;
-    vertical-align: middle !important;
-    padding: 1%;
-    
+.trivia-button {
+  display: inline-flex;
+  vertical-align: middle !important;
+  padding: 1%;
 }
 
-.field-checkbox{
-    line-height: 2;
+.field-checkbox {
+  line-height: 2;
 }

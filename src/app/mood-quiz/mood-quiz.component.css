@@ -1,28 +1,28 @@
-:host ::ng-deep .p-card.p-component{
-    height: 300px;   
-    display: flex;
-    justify-content: center;
+:host ::ng-deep .p-card.p-component {
+  height: 300px;
+  display: flex;
+  justify-content: center;
 }
 
-.questions{
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
+.questions {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
 }
 
-.result{
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
+.result {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
 }
 
-.buttons{
-    display: flex;
-    flex-direction: row;
+.buttons {
+  display: flex;
+  flex-direction: row;
 }

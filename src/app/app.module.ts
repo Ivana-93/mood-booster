@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS  } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -29,7 +29,6 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { TriviaComponent } from './trivia/trivia.component';
 import { TriviaQuestionComponent } from './trivia/trivia-question/trivia-question.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +36,7 @@ import { TriviaQuestionComponent } from './trivia/trivia-question/trivia-questio
     RegisterComponent,
     TriviaComponent,
     TriviaQuestionComponent,
-    ],
+  ],
 
   imports: [
     CommonModule,
@@ -59,14 +58,20 @@ import { TriviaQuestionComponent } from './trivia/trivia-question/trivia-questio
     RadioButtonModule,
     MainLayoutModule,
     ToastModule,
-   
   ],
   exports: [ButtonModule, DropdownModule, OverlayPanelModule, MessagesModule],
-  providers: [ApiService, ButtonDirective, StorageService, {
-    provide: HTTP_INTERCEPTORS,
-    useClass: AuthenticationInterceptor,
-    multi: true,
-  }, MessageService, ConfirmationService],
-  bootstrap: [AppComponent]
+  providers: [
+    ApiService,
+    ButtonDirective,
+    StorageService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthenticationInterceptor,
+      multi: true,
+    },
+    MessageService,
+    ConfirmationService,
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -319,7 +319,7 @@
   }
 
   .p-disabled, .p-component:disabled {
-    opacity: 0.38;
+    opacity: 0.5;
   }
 
   .p-error {
@@ -4287,8 +4287,8 @@
   }
   .p-dialog .p-dialog-footer {
     border-top: 0 none;
-    background: #ffffff;
-    color: rgba(0, 0, 0, 0.87);
+    background: #E0FFEF;
+    color: var(--my-primary-text-color);
     padding: 1rem 1.5rem;
     text-align: right;
     border-bottom-right-radius: 4px;

@@ -12,6 +12,4 @@ export class ListResponse<T> extends BaseResponse {
   public data: T[];
 }
 
-export class ErrorResponse extends BaseResponse {
-
-}
+export class ErrorResponse extends BaseResponse {}

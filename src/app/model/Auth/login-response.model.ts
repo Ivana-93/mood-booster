@@ -1,7 +1,7 @@
-import { User } from "../user.model";
+import { User } from '../user.model';
 
 export class LoginResponse {
-    token: string;
-    refreshToken: string;
-    user: User;
+  token: string;
+  refreshToken: string;
+  user: User;
 }

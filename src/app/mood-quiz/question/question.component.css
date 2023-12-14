@@ -1,12 +1,9 @@
-
-.quiz-question{
-    display: inline-flex;
-    vertical-align: middle !important;
-    padding: 1%;
-    
+.quiz-question {
+  display: inline-flex;
+  vertical-align: middle !important;
+  padding: 1%;
 }
 
-.field-checkbox{
-    line-height: 2;
+.field-checkbox {
+  line-height: 2;
 }
-

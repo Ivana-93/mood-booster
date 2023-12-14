@@ -3,6 +3,4 @@ export class Activity {
     date: string;
     content: string;
     link: string;
-
-
 }

@@ -17,6 +17,8 @@
     >
       <p-tabPanel header="Account" leftIcon="pi pi-user"> </p-tabPanel>
       <p-tabPanel headerStyleClass="d-none"> </p-tabPanel>
+      <p-toast></p-toast>
+      <p-confirmDialog></p-confirmDialog>
     </p-tabView>
   </div>
 </div>
@@ -30,9 +32,7 @@
       label="Logout"
       icon="pi pi-sign-out"
       [rounded]="true"
-      styleClass="p-button-text"
     ></p-button>
-    <p-confirmPopup></p-confirmPopup>
   </div>
 </p-overlayPanel>
 

@@ -8,43 +8,48 @@ import { MoodData } from '../model/moodData.model';
 @Component({
   selector: 'mood-history',
   templateUrl: './mood-history.component.html',
-  styleUrls: ['./mood-history.component.css']
+  styleUrls: ['./mood-history.component.css'],
 })
-export class MoodHistoryComponent implements OnInit{
-
+export class MoodHistoryComponent implements OnInit {
   calendarOptions: CalendarOptions = {
     plugins: [dayGridPlugin],
     initialView: 'dayGridMonth',
     weekends: true,
-    events: [
-      { title: "Neki tekst", start: new Date() }
-    ]
+    eventTimeFormat: {
+      hour: '2-digit',
+      minute: '2-digit',
+      meridiem: false,
+      hour12: false,
+    },
+    events: [{ title: 'Neki tekst', start: new Date() }],
   };
 
-  constructor(private apiService: ApiService){}
+  constructor(private apiService: ApiService) {}
 
-  ngOnInit(){
-    this.getMoodHistoryCalendar()
+  ngOnInit() {
+    this.getMoodHistoryCalendar();
   }
 
-  getMoodHistoryCalendar() {
+  // Method for getting mood history calendar data
+  private getMoodHistoryCalendar() {
     this.apiService.getMoodCalendar().subscribe({
-      next: this.handleMoodCalendarResponse.bind(this),
-      error: this.handleError.bind(this)
+      next: this.handleMoodCalendarSuccess.bind(this),
+      error: this.handleMoodCalendarError.bind(this),
     });
   }
 
-  handleMoodCalendarResponse(responseData: SingleResponse<MoodData[]>): void {
-    this.calendarOptions.events = responseData.data.map(moodData => {
+  // Method for handling mood history calendar data response
+  private handleMoodCalendarSuccess(responseData: SingleResponse<MoodData[]>): void {
+    this.calendarOptions.events = responseData.data.map((moodData) => {
       return {
         title: moodData.moodTypeResult,
-        start: moodData.moodCreated
-      }
-    })
+        start: moodData.moodCreated,
+      };
+    });
   }
 
-  private handleError(error: Error): void {
-    //confirm("Sorry! Something went wrong!")
+  // Method for handling mood history calendar data response error
+  private handleMoodCalendarError(error: Error): void {
     console.log(error.message);
   }
 }

@@ -14,19 +14,19 @@ import { MessageService } from 'primeng/api';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  get email() {
-    return this.loginForm.get('email');
-  }
-  get password() {
-    return this.loginForm.get('password');
-  }
-
   constructor(
     private router: Router,
     private authService: ApiService,
     private storageService: StorageService,
     private messageService: MessageService
   ) {}
+
+  get email() {
+    return this.loginForm.get('email');
+  }
+  get password() {
+    return this.loginForm.get('password');
+  }
 
   loginForm: FormGroup;
   isLoading: boolean = false;
@@ -38,7 +38,8 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  onLogin() {
+  // Method for handling login button click
+  public onLogin() {
     let loginCredentials = new LoginCredentials(
       this.email.value,
       this.password.value
@@ -46,6 +47,7 @@ export class LoginComponent implements OnInit {
     this.login(loginCredentials);
   }
 
+  // Method for handling login request
   private login(credentials: LoginCredentials): void {
     this.isLoading = true;
     this.authService.login(credentials).subscribe({
@@ -54,14 +56,18 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  handleLoginSuccess(responseData: SingleResponse<LoginResponse>): void {
+  // Method for handling login response
+  private handleLoginSuccess(
+    responseData: SingleResponse<LoginResponse>
+  ): void {
     this.storageService.setAccessToken(responseData.data.token);
     this.storageService.setRefreshToken(responseData.data.refreshToken);
     this.storageService.setUser(responseData.data.user);
     this.router.navigate(['/']);
   }
 
-  handleLoginError(error: ErrorResponse): void {
+  // Method for handling login error
+  private handleLoginError(error: ErrorResponse): void {
     console.log('Fail', error.message);
     if ((error.status = 401)) {
       this.messageService.add({
@@ -73,7 +79,8 @@ export class LoginComponent implements OnInit {
     this.isLoading = false;
   }
 
-  onRegister() {
+  // Method for handling register button click
+  public onRegister() {
     this.router.navigate(['/register']);
   }
 }

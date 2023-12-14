@@ -1,42 +1,53 @@
-:host ::ng-deep .trivia .p-card.p-component{
-    height: 80vh;  
-    display: flex;
-    justify-content: center;
-    margin-right: 10%;
-    border-radius: 25px;
+:host ::ng-deep .trivia .p-card.p-component {
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  margin-right: 5%;
+  margin-left: 5%;
+  border-radius: 25px;
+}
+
+:host ::ng-deep .trivia .p-card.p-component .p-card-body {
+  width: 100%;
+}
+:host ::ng-deep .trivia .p-card.p-component .p-card-body .p-card-content {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
 }
 
 .trivia-quiz {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
-.questions{
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
-    color: #03213A;
-    background-color: #F8B4D8;
-    border-radius: 25px;
-    height: 60vh;
-    width: 40vw;
+.questions {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  color: #03213a;
+  background-color: #f8b4d8;
+  border-radius: 25px;
+  height: 60vh;
 }
 
 .trivia-image {
-    height: 90%;
-    width: 80%;
-    margin-left: 10%
+  height: 90%;
+  width: 90%;
+  margin-left: 3%;
 }
 
 h3 {
-   color: #677988;
+  color: #677988;
 }
 
 .result {
-    display: flex;
-    flex-direction: column;
-    text-align:  center;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
 }

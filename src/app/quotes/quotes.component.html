@@ -13,13 +13,18 @@
       <p>{{ quote }}</p>
     </div>
     <hr color="#ff66b3" />
-    <h3 style="text-align: center;">Your inspirational quotes:</h3>
+    <h3 style="text-align: center">Your inspirational quotes:</h3>
     <div class="list-of-quotes">
-      <p-dataView [value]="quotes" [rows]="5" [paginator]="true" >
+      <p-dataView
+        [value]="quotes"
+        [rows]="5"
+        [paginator]="true"
+        emptyMessage="You don't have any quotes."
+      >
         <ng-template let-quote pTemplate="listItem">
-            <p>{{ quote.content }}</p>
+          <p>{{ quote.content }}</p>
         </ng-template>
-      </p-dataView>  
+      </p-dataView>
     </div>
   </p-card>
 </div>

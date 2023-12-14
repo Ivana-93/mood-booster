@@ -1,16 +1,15 @@
-.vertical-layout{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: flex-start;
+.vertical-layout {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: flex-start;
 }
-.header{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin-top: 1rem;
-    margin-left: 5%;
-    margin-right: 5%;
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 1rem;
+  margin-left: 5%;
+  margin-right: 5%;
 }
-

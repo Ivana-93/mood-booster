@@ -1,34 +1,51 @@
 <div class="card row">
   <div class="diary-quote col-md-8 col-sm-6">
-    <p-card><h3>"People who keep journals have life twice."</h3>
-      <p>Jessamyn West</p></p-card>
-    
+    <p-card
+      ><h3>"People who keep journals have life twice."</h3>
+      <p>Jessamyn West</p></p-card
+    >
   </div>
   <textarea
     class="dairy"
     rows="15"
     cols="1"
+    maxlength="14000"
     pInputTextarea
+    placeholder="Write your thoughts here..."
     [(ngModel)]="value"
   ></textarea>
+  <div *ngIf="value?.length == 14000">
+    <p-message
+      severity="info"
+      text="You reached maximum number of characters. Please save your diary."
+    >
+    </p-message>
+  </div>
   <div class="button">
     <p-button
-      (click)="onSaveDairy()"
+      (click)="onSaveDiary()"
       class="dairy-button"
       type="button"
       label="SAVE YOUR THOUGHTS"
       [rounded]="true"
       [loading]="isLoading"
-      
+      [disabled]="!value"
     ></p-button>
   </div>
-  <div class="list-of-thoughts" >
+  <p-toast position="top-center" key="tc"></p-toast>
+  <div class="list-of-thoughts">
     <h3>Want to unraveled what you thought before?</h3>
-    <hr color="#ff66b3">
+    <hr color="#ff66b3" />
     <ul *ngFor="let entry of entries">
-      <li><p-fieldset legend={{entry.dateCreated}} [toggleable]="true" [collapsed]="true">
-        <p>{{entry.text}}</p>
-    </p-fieldset></li>
+      <li>
+        <p-fieldset
+          legend="{{ entry.dateCreated }}"
+          [toggleable]="true"
+          [collapsed]="true"
+        >
+          <p>{{ entry.text }}</p>
+        </p-fieldset>
+      </li>
     </ul>
   </div>
 </div>

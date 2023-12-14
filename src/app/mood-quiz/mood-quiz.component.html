@@ -1,19 +1,19 @@
-<p-card 
-    class="card"
-    [header]="'How Are You Feeling?'"
-    subheader="Check your mood!"
+<p-card
+  class="card"
+  [header]="'How Are You Feeling?'"
+  subheader="Check your mood!"
+>
+  <p-button
+    (click)="getQuestions()"
+    class="quiz-button"
+    type="button"
+    label="START QUIZ"
+    [rounded]="true"
+    [loading]="isLoading"
+    *ngIf="!(!isLoading && questions && isVisible)"
   >
-    <p-button
-      (click)="getQuestions()"
-      class="quiz-button"
-      type="button"
-      label="START QUIZ"
-      [rounded]="true"
-      [loading]="isLoading"
-      *ngIf="!(!isLoading && questions && visible)"
-    >
-    </p-button>
-    <p-dialog [(visible)]="visible" [modal]="true">
+  </p-button>
+  <p-dialog [(visible)]="isVisible" [modal]="true">
     <div class="questions" *ngIf="questions && !isFinished">
       <div *ngFor="let question of questions.questionList; let i = index">
         <question
@@ -23,7 +23,7 @@
           (selectedAnswer)="handleAnswerSelected(question, $event)"
         ></question>
       </div>
-      <br>
+      <br />
       <p-button
         *ngIf="currentQuestion < questions.questionList.length"
         [disabled]="!isClicked"
@@ -37,28 +37,31 @@
         (click)="showResult()"
         label="FIND OUT RESULT"
         [rounded]="true"
+        [loading]="isLoading"
       >
       </p-button>
     </div>
-    <div class="result" *ngIf="isFinished">
+    <div class="result" *ngIf="isFinished && !isLoading">
       <h3>{{ moodType }}</h3>
       <p>{{ moodText }}</p>
       <br />
       <h4>Do you want to save your result in mood history calendar?</h4>
-      <div class="buttons"><p-button
-        (click)="saveMood()"
-        class="quiz-button"
-        type="button"
-        label="YES"
-        [rounded]="true"
-      ></p-button>
-      <p-button
-        (click)="noSaveMood()"
-        class="quiz-button"
-        type="button"
-        label="NO"
-        [rounded]="true"
-      ></p-button></div>
+      <div class="buttons">
+        <p-button
+          (click)="saveMood()"
+          class="quiz-button"
+          type="button"
+          label="YES"
+          [rounded]="true"
+        ></p-button>
+        <p-button
+          (click)="noSaveMood()"
+          class="quiz-button"
+          type="button"
+          label="NO"
+          [rounded]="true"
+        ></p-button>
+      </div>
     </div>
   </p-dialog>
-  </p-card>
+</p-card>

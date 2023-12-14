@@ -15,6 +15,7 @@ export class HeaderComponent {
   isMobile: boolean;
   items: MenuItem[];
   isLoggedin = true;
+  position = { 'margin-left': '800rem' };
   private user: User;
   public userInfo: string;
   public overlayIndex: number = 1;
@@ -75,11 +76,12 @@ export class HeaderComponent {
     this.userInfo = `${this.user.firstName} ${this.user.lastName}`;
   }
 
-  checkScreenSize() {
+  public checkScreenSize() {
     this.isMobile = window.innerWidth < 768;
   }
 
-  navigateTo(event: TabViewChangeEvent) {
+  // Method to navigate to different pages through the tab view
+  public navigateTo(event: TabViewChangeEvent) {
     this.overlayIndex = 1;
     switch (event.index) {
       case 0:
@@ -97,7 +99,24 @@ export class HeaderComponent {
     }
   }
 
-  toggleOverlay(event: TabViewChangeEvent, op: OverlayPanel, target) {
+  private navigateToHome() {
+    this.router.navigate(['/home']);
+  }
+
+  private navigateToQuiz() {
+    this.router.navigate(['/trivia']);
+  }
+
+  private navigateToMoodHistory() {
+    this.router.navigate(['/moodhistory']);
+  }
+
+  private navigateToDiary() {
+    this.router.navigate(['/diary']);
+  }
+
+  // Method to toggle the overlay panel
+  public toggleOverlay(event: TabViewChangeEvent, op: OverlayPanel, target) {
     if (event.index == 0) {
       op.show(event.originalEvent, target);
       this.overlayIndex = 0;
@@ -107,29 +126,14 @@ export class HeaderComponent {
     }
   }
 
-  handleOnHide(): void {
+  // Method to handle the overlay panel hide event
+  public handleOnHide(): void {
     this.overlayIndex = 1;
   }
 
-  position = { 'margin-left': '800rem' };
-
-  navigateToHome() {
-    this.router.navigate(['/home']);
-  }
-
-  navigateToQuiz() {
-    this.router.navigate(['/trivia']);
-  }
-
-  navigateToMoodHistory() {
-    this.router.navigate(['/moodhistory']);
-  }
-
-  navigateToDiary() {
-    this.router.navigate(['/diary']);
-  }
-
-  logout(event: Event) {
+  // Method to logout the user
+  public logout(event: Event) {
+    //on mobile screen
     if (event == null) {
       if (confirm('Are you sure you want to logout?')) {
         this.storageService.removeAccessToken();
@@ -137,10 +141,12 @@ export class HeaderComponent {
         this.router.navigate(['/login']);
       }
     }
+    //on desktop screen
     this.confirmationService.confirm({
       target: event.target as EventTarget,
       message: 'Are you sure you want to logout?',
       icon: 'pi pi-exclamation-triangle',
+      defaultFocus: 'reject',
       accept: () => {
         this.storageService.removeAccessToken();
         this.storageService.removeUser();

@@ -7,60 +7,57 @@ import { ListResponse, SingleResponse } from '../model/responses.model';
 @Component({
   selector: 'quotes',
   templateUrl: './quotes.component.html',
-  styleUrls: ['./quotes.component.css']
+  styleUrls: ['./quotes.component.css'],
 })
-export class QuotesComponent implements OnInit{
-
+export class QuotesComponent implements OnInit {
   constructor(private router: Router, private apiService: ApiService) {}
 
-  quote: string = "";
+  quote: string = '';
   isLoading = false;
   quotes: QuoteData[] = [];
 
-  ngOnInit(){
-      this.getQuotes();
-        
+  ngOnInit() {
+    this.getQuotes();
   }
 
-  onGetQuote() {
+  // Method for handling quote button click
+  public onGetQuote() {
     this.getQuote();
     this.isLoading = true;
   }
 
-  public getQuote(): void {
-    this.apiService.getQuotes().subscribe(
-      //success
-      {
-        next: this.handleSuccess.bind(this),
-        error: this.handleError.bind(this),
-      }
-    );
+  //Retrieves a quote from the API service.
+  private getQuote(): void {
+    this.apiService.getQuote().subscribe({
+      next: this.handleGetQuoteSuccess.bind(this),
+      error: this.handleError.bind(this),
+    });
   }
 
-  private handleSuccess(responseData: SingleResponse<QuoteData>): void {
-    
-    var quoteData= responseData.data;
+  // Method for handling quote data response
+  private handleGetQuoteSuccess(responseData: SingleResponse<QuoteData>): void {
+    var quoteData = responseData.data;
     console.log(quoteData);
     this.quote = quoteData.content;
     console.log(this.quote);
     this.isLoading = false;
   }
 
+  // Method for handling response error in all methods in this component
   private handleError(error: Error): void {
     console.log(error.message);
   }
 
-
-  public getQuotes():void {
+  // Method for retriving list of quotes from the API service
+  private getQuotes(): void {
     this.apiService.getUserQuotes().subscribe({
       next: this.handleGetQuotesSuccess.bind(this),
-      error: this.handleError.bind(this)
-    })
+      error: this.handleError.bind(this),
+    });
   }
 
-  handleGetQuotesSuccess(response: ListResponse<QuoteData>){
-    this.quotes = response.data.reverse()
-    }
+  // Method for handling list of quotes response
+  private handleGetQuotesSuccess(response: ListResponse<QuoteData>) {
+    this.quotes = response.data.reverse();
   }
-
-
+}

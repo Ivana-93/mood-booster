@@ -1,76 +1,81 @@
 <div class="trivia-quiz">
-  <div class="col-md-6 col-sm-8">
-    <img
-      class="trivia-image"
-      src="assets/images/game-quiz.jpg"
-      alt="Trivia Quiz"
-    />
-  </div>
-  <div class="col-md-6 col-sm-6">
-<p-card
-  class="trivia"
-  header="Have Fun With Trivia Quiz"
-  subheader="Prepare Your Neurons for a Brainiac Bonanza"
->
-  <p-button
-    (click)="getTriviaQuestions()"
-    class="quiz-button"
-    type="button"
-    label="START QUIZ"
-    [rounded]="true"
-    [loading]="isLoading"
-    *ngIf="!currentQuestion && currentQuestionIndex<10"
-  >
-  </p-button>
-  <div *ngIf="currentQuestion" class="questions">
-    <h3 *ngIf="currentQuestionIndex >= 0 && currentQuestionIndex <= 10">
-      Question {{ currentQuestionIndex + 1 }} / 10
-    </h3>
-    <trivia-question
-      [question]="currentQuestion"
-      (selectedAnswer)="handleSelectedAnswer($event)"
-    >
-    </trivia-question>
-  </div>
-  <div *ngIf="currentQuestionIndex >= 10" class="result">
-    <div *ngIf="points <= 4">
-      <h3>Your result is {{ points }}/10.</h3>
-      <p>
-        Oops! It seems like the trivia gods are taking a coffee break, and so
-        are your correct answers. Don't worry, though - even the best brains
-        have their off days. Consider it a warm-up round, and get ready to
-        conquer the next set of brain-bending questions. You've got this!
-      </p>
+  <div class="row">
+    <div class="col-md-6 col-sm-12 mx-auto">
+      <img
+        class="trivia-image"
+        src="assets/images/game-quiz.jpg"
+        alt="Trivia Quiz"
+      />
     </div>
-    <div *ngIf="points > 4 && points <= 7">
-      <h3>Your result is {{ points }}/10.</h3>
-      <p>
-        "Not too shabby! You're cruising through the trivia galaxy with finesse.
-        Room for improvement? Sure, but remember, even rocket scientists have
-        their learning moments. Keep that curiosity alive, and you'll be a
-        trivia superstar in no time. Buckle up for the next round - the
-        adventure continues!
-      </p>
+    <div class="col-md-6 col-sm-12">
+      <p-card
+        class="trivia"
+        header="Have Fun With Trivia Quiz"
+        subheader="Prepare Your Neurons for a Brainiac Bonanza"
+      >
+        <p-button
+          (click)="getTriviaQuestions()"
+          class="quiz-button"
+          type="button"
+          label="START QUIZ"
+          [rounded]="true"
+          [loading]="isLoading"
+          *ngIf="!currentQuestion && currentQuestionIndex < 10"
+        >
+        </p-button>
+        <div *ngIf="currentQuestion" class="questions w-100">
+            <h3 *ngIf="currentQuestionIndex >= 0 && currentQuestionIndex <= 10">
+              Question {{ currentQuestionIndex + 1 }} / 10
+            </h3>
+            <trivia-question
+              [question]="currentQuestion"
+              (selectedAnswer)="handleSelectedAnswer($event)"
+            >
+            </trivia-question>
+        </div>
+        <div *ngIf="currentQuestionIndex >= 10" class="result">
+          <div *ngIf="points <= 4">
+            <h3>Your result is {{ points }}/10.</h3>
+            <p>
+              Oops! It seems like the trivia gods are taking a coffee break, and
+              so are your correct answers. Don't worry, though - even the best
+              brains have their off days. Consider it a warm-up round, and get
+              ready to conquer the next set of brain-bending questions. You've
+              got this!
+            </p>
+          </div>
+          <div *ngIf="points > 4 && points <= 7">
+            <h3>Your result is {{ points }}/10.</h3>
+            <p>
+              "Not too shabby! You're cruising through the trivia galaxy with
+              finesse. Room for improvement? Sure, but remember, even rocket
+              scientists have their learning moments. Keep that curiosity alive,
+              and you'll be a trivia superstar in no time. Buckle up for the
+              next round - the adventure continues!
+            </p>
+          </div>
+          <div *ngIf="points > 7">
+            <h3>Your result is {{ points }}/10.</h3>
+            <p>
+              Wow, trivia virtuoso! You aced it like a true brainiac. You've
+              unlocked the secrets of the quiz universe, leaving us in awe. Your
+              brain is a powerhouse of knowledge! Take a bow, soak in the glory,
+              and prepare for even greater challenges. The trivia realm bows to
+              your expertise. Bravo!
+            </p>
+          </div>
+          <p-button
+            *ngIf="currentQuestionIndex >= 10"
+            (click)="playTriviaAgain()"
+            class="quiz-button"
+            type="button"
+            label="TRY AGAIN"
+            [rounded]="true"
+            [loading]="isLoading"
+          >
+          </p-button>
+        </div>
+      </p-card>
     </div>
-    <div *ngIf="points > 7">
-      <h3>Your result is {{ points }}/10.</h3>
-      <p>
-        Wow, trivia virtuoso! You aced it like a true brainiac. You've unlocked
-        the secrets of the quiz universe, leaving us in awe. Your brain is a
-        powerhouse of knowledge! Take a bow, soak in the glory, and prepare for
-        even greater challenges. The trivia realm bows to your expertise. Bravo!
-      </p>
-    </div>
-    <p-button *ngIf="currentQuestionIndex >= 10"
-    (click)="playTriviaAgain()"
-    class="quiz-button"
-    type="button"
-    label="TRY AGAIN"
-    [rounded]="true"
-    [loading]="isLoading">
-  </p-button>
   </div>
-</p-card>
 </div>
-</div>
-

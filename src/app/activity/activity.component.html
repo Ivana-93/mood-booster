@@ -1,6 +1,6 @@
 <div class="activity">
-  <p-card class="card" header="Are You Bored?" >
-      <p-button
+  <p-card class="card" header="Are You Bored?">
+    <p-button
       *ngIf="!isLoading"
       (click)="getRandomActivity()"
       class="activity-button"
@@ -8,8 +8,7 @@
       [rounded]="true"
       [loading]="isLoading"
       >{{ buttonLabel }}
-      </p-button
-    >
+    </p-button>
     <p>{{ activity }}</p>
   </p-card>
 </div>

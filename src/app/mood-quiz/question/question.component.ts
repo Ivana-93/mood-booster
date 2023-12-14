@@ -5,13 +5,10 @@ import { Question } from 'src/app/model/questionData/question.model';
 @Component({
   selector: 'question',
   templateUrl: './question.component.html',
-  styleUrls: ['./question.component.css']
+  styleUrls: ['./question.component.css'],
 })
-
-export class QuestionComponent{
-
+export class QuestionComponent {
   @Input() question: Question;
-
 
   @Input() questionNumber: number;
 
@@ -19,6 +16,7 @@ export class QuestionComponent{
 
   selection: Answer;
 
+  // Handle answer selection
   public handleAnswerSelection(answer: Answer): void {
     this.selectedAnswer.emit(answer);
   }

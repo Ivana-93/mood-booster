@@ -1,16 +1,16 @@
-.list-of-quotes{
-    color: #677988;
-    background-color: #F8B4D8;
+.list-of-quotes {
+  color: #677988;
+  background-color: #f8b4d8;
 }
 
-.button{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-:host::ng-deep.p-dataview .p-dataview-content{
-    background: #b2ffd8;
-    color: #677988;
+:host::ng-deep.p-dataview .p-dataview-content {
+  background: #b2ffd8;
+  color: #677988;
 }

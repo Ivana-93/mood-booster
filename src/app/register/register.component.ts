@@ -53,7 +53,8 @@ export class RegisterComponent {
     });
   }
 
-  onRegister() {
+  // Method for handling register button click
+  public onRegister() {
     let registerCredentials = new RegisterCredentials(
       this.email.value,
       this.password.value,
@@ -63,7 +64,8 @@ export class RegisterComponent {
     this.submitForm(registerCredentials);
   }
 
-  submitForm(regCredentials: RegisterCredentials) {
+  // Method for handling form submission
+  private submitForm(regCredentials: RegisterCredentials) {
     this.isLoading = true;
     this.authService.register(regCredentials).subscribe({
       next: this.handleRegisterSuccess.bind(this),
@@ -71,12 +73,14 @@ export class RegisterComponent {
     });
   }
 
-  handleRegisterSuccess(responseData: BaseResponse): void {
+  // Method for handling register success
+  private handleRegisterSuccess(responseData: BaseResponse): void {
     this.isLoading = false;
     this.router.navigate(['/login']);
   }
 
-  handleRegisterError(error: Error): void {
+  // Method for handling register error
+  private handleRegisterError(error: Error): void {
     this.isLoading = false;
     this.registrationFailed = true;
   }
