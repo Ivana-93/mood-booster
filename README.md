@@ -30,7 +30,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The appli
 # Technologies Used
 Frontend: Angular with PrimeNG library and Bootstrap functionalities.
 
-Backend/API: MoodBoosterAPI (C#)
+Backend/API: MoodBoosterAPI (C#, ASP.NET Web Api 2)
 
 Database: Firebase
 
