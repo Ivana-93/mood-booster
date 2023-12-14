@@ -6,22 +6,22 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 # Features
 1. Jokes
-Laugh away your stress with a collection of jokes fetched from JokeAPI (https://sv443.net/jokeapi/v2/).
+ - Laugh away your stress with a collection of jokes fetched from JokeAPI (https://sv443.net/jokeapi/v2/).
 
 2. Inspirational Quotes
-Find motivation and inspiration through a variety of quotes sourced from ZenQuotes (https://zenquotes.io/).
+ - Find motivation and inspiration through a variety of quotes sourced from ZenQuotes (https://zenquotes.io/).
 
 3. Activities
 Combat boredom with a range of suggested activities provided by BoredAPI (https://www.boredapi.com/).
 
 4. Game Trivia Quiz
-Challenge yourself with a fun trivia quiz featuring questions from Open Trivia DB (https://opentdb.com/).
+ - Challenge yourself with a fun trivia quiz featuring questions from Open Trivia DB (https://opentdb.com/).
 
 5. Mood Quiz
-Discover your current mood and keep a record in your mood history calendar. Understand your emotions and track your well-being over time.
+ - Discover your current mood and keep a record in your mood history calendar. Understand your emotions and track your well-being over time.
 
 6. Diary
-Express your thoughts and feelings by writing in your personal diary.
+ - Express your thoughts and feelings by writing in your diary.
 
 # Development server
 
@@ -29,7 +29,9 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The appli
 
 # Technologies Used
 Frontend: Angular with PrimeNG library and Bootstrap functionalities.
+
 Backend/API: MoodBoosterAPI (C#)
+
 Database: Firebase
 
 # Mood Booster API
